@@ -1,0 +1,558 @@
+# Run from the project root. This config only supplies parsing rules, not column types.
+# plan is source-only; malformed examples intentionally produce non-clean outcomes.
+[destination]
+server = "127.0.0.1,14339"
+database = "DbIngestTest_Examples"
+control_database = "DbIngestTest_Examples_Control"
+[source]
+root = "examples/messy-exports"
+path = "examples/messy-exports"
+include = ["csv.csv", "tabbed.tsv", "pipe.txt", "semicolon.txt", "custom.txt", "no_header.csv", "duplicate.csv", "nulls.csv", "integer_boundaries.csv", "exact_types.csv", "unicode.csv", "utf8_bom.csv", "utf16.csv", "multiline.csv", "escape_rfc.csv", "escape_backslash.csv", "escape_unquoted.csv", "escape_single_quote.csv", "escape_multiline.csv", "escape_mixed_endings.csv", "escape_spaces.csv", "escape_trailing_empty.csv", "escape_literal_backslash.csv", "escape_nel_literal.csv", "dirty_ragged.csv", "dirty_postquote.csv", "dirty_blank.csv", "dirty_unclosed.csv", "dirty_dangling_escape.csv", "dirty_utf8.csv", "dirty_mixed_encoding.csv", "dirty_undefined_cp1252.csv", "dirty_truncated_utf16.csv", "dirty_nul.csv", "dirty_bom_conflict.csv", "encoding_ascii.csv", "encoding_cp1252.csv", "encoding_iso8859-1.csv", "encoding_iso8859-15.csv", "encoding_cp437.csv", "encoding_cp850.csv", "encoding_cp858.csv", "encoding_cp1250.csv", "encoding_cp1251.csv", "encoding_koi8-r.csv", "encoding_cp1253.csv", "encoding_cp1254.csv", "encoding_cp1255.csv", "encoding_cp1256.csv", "encoding_cp1257.csv", "encoding_cp1258.csv", "encoding_utf-8-sig.csv", "encoding_utf-16-le.csv", "encoding_utf-16-be.csv", "encoding_utf-32-le.csv", "encoding_utf-32-be.csv", "encoding_shift_jis.csv", "encoding_cp932.csv", "encoding_euc_jp.csv", "encoding_gb18030.csv", "encoding_gbk.csv", "encoding_big5.csv", "encoding_euc_kr.csv", "encoding_cp949.csv", "ebcdic_cp037_lf.csv", "ebcdic_cp037_crlf.csv", "ebcdic_cp037_nel.csv", "ebcdic_cp500_lf.csv", "ebcdic_cp500_crlf.csv", "ebcdic_cp500_nel.csv", "ebcdic_cp1140_lf.csv", "ebcdic_cp1140_crlf.csv", "ebcdic_cp1140_nel.csv", "ebcdic_multiline_nel.csv", "ebcdic_display_numbers.csv"]
+[preservation]
+work_directory = ".integration/messy-example-work"
+minimum_free_disk_bytes = 1048576
+[parallel]
+enabled = false
+[interaction]
+non_interactive = true
+
+[[file_rules]]
+glob = "csv.csv"
+encoding = "utf-8"
+delimiter = ","
+quotechar = "\""
+header = "present"
+
+[[file_rules]]
+glob = "tabbed.tsv"
+encoding = "utf-8"
+delimiter = "\t"
+quotechar = "\""
+header = "present"
+
+[[file_rules]]
+glob = "pipe.txt"
+encoding = "utf-8"
+delimiter = "|"
+quotechar = "\""
+header = "present"
+
+[[file_rules]]
+glob = "semicolon.txt"
+encoding = "utf-8"
+delimiter = ";"
+quotechar = "\""
+header = "present"
+
+[[file_rules]]
+glob = "custom.txt"
+encoding = "utf-8"
+delimiter = "~"
+quotechar = "\""
+header = "present"
+
+[[file_rules]]
+glob = "no_header.csv"
+encoding = "utf-8"
+delimiter = ","
+quotechar = "\""
+header = "absent"
+
+[[file_rules]]
+glob = "duplicate.csv"
+encoding = "utf-8"
+delimiter = ","
+quotechar = "\""
+header = "present"
+
+[[file_rules]]
+glob = "nulls.csv"
+encoding = "utf-8"
+delimiter = ","
+quotechar = "\""
+header = "present"
+null_tokens = ["NULL"]
+
+[[file_rules]]
+glob = "integer_boundaries.csv"
+encoding = "utf-8"
+delimiter = ","
+quotechar = "\""
+header = "present"
+
+[[file_rules]]
+glob = "exact_types.csv"
+encoding = "utf-8"
+delimiter = ","
+quotechar = "\""
+header = "present"
+
+[[file_rules]]
+glob = "unicode.csv"
+encoding = "utf-8"
+delimiter = ","
+quotechar = "\""
+header = "present"
+
+[[file_rules]]
+glob = "utf8_bom.csv"
+encoding = "utf-8-sig"
+delimiter = ","
+quotechar = "\""
+header = "present"
+
+[[file_rules]]
+glob = "utf16.csv"
+encoding = "utf-16"
+delimiter = ","
+quotechar = "\""
+header = "present"
+
+[[file_rules]]
+glob = "multiline.csv"
+encoding = "utf-8"
+delimiter = ","
+quotechar = "\""
+header = "present"
+
+[[file_rules]]
+glob = "escape_rfc.csv"
+encoding = "utf-8"
+delimiter = ","
+quotechar = "\""
+header = "present"
+
+[[file_rules]]
+glob = "escape_backslash.csv"
+encoding = "utf-8"
+delimiter = ","
+quotechar = "\""
+header = "present"
+escapechar = "\\"
+doublequote = false
+
+[[file_rules]]
+glob = "escape_unquoted.csv"
+encoding = "utf-8"
+delimiter = ","
+quotechar = "none"
+header = "present"
+escapechar = "\\"
+
+[[file_rules]]
+glob = "escape_single_quote.csv"
+encoding = "utf-8"
+delimiter = ";"
+quotechar = "'"
+header = "present"
+
+[[file_rules]]
+glob = "escape_multiline.csv"
+encoding = "utf-8"
+delimiter = ","
+quotechar = "\""
+header = "present"
+
+[[file_rules]]
+glob = "escape_mixed_endings.csv"
+encoding = "utf-8"
+delimiter = ","
+quotechar = "\""
+header = "present"
+
+[[file_rules]]
+glob = "escape_spaces.csv"
+encoding = "utf-8"
+delimiter = ","
+quotechar = "\""
+header = "present"
+
+[[file_rules]]
+glob = "escape_trailing_empty.csv"
+encoding = "utf-8"
+delimiter = ","
+quotechar = "\""
+header = "present"
+null_tokens = ["NULL"]
+
+[[file_rules]]
+glob = "escape_literal_backslash.csv"
+encoding = "utf-8"
+delimiter = ","
+quotechar = "\""
+header = "present"
+
+[[file_rules]]
+glob = "escape_nel_literal.csv"
+encoding = "utf-8"
+delimiter = ","
+quotechar = "\""
+header = "present"
+
+[[file_rules]]
+glob = "dirty_ragged.csv"
+encoding = "utf-8"
+delimiter = ","
+quotechar = "\""
+header = "present"
+
+[[file_rules]]
+glob = "dirty_postquote.csv"
+encoding = "utf-8"
+delimiter = ","
+quotechar = "\""
+header = "present"
+
+[[file_rules]]
+glob = "dirty_blank.csv"
+encoding = "utf-8"
+delimiter = ","
+quotechar = "\""
+header = "present"
+
+[[file_rules]]
+glob = "dirty_unclosed.csv"
+encoding = "utf-8"
+delimiter = ","
+quotechar = "\""
+header = "present"
+
+[[file_rules]]
+glob = "dirty_dangling_escape.csv"
+encoding = "utf-8"
+delimiter = ","
+quotechar = "\""
+header = "present"
+escapechar = "\\"
+
+[[file_rules]]
+glob = "dirty_utf8.csv"
+encoding = "utf-8"
+delimiter = ","
+quotechar = "\""
+header = "present"
+
+[[file_rules]]
+glob = "dirty_mixed_encoding.csv"
+encoding = "utf-8"
+delimiter = ","
+quotechar = "\""
+header = "present"
+
+[[file_rules]]
+glob = "dirty_undefined_cp1252.csv"
+encoding = "cp1252"
+delimiter = ","
+quotechar = "\""
+header = "present"
+
+[[file_rules]]
+glob = "dirty_truncated_utf16.csv"
+encoding = "utf-16-le"
+delimiter = ","
+quotechar = "\""
+header = "present"
+
+[[file_rules]]
+glob = "dirty_nul.csv"
+encoding = "utf-8"
+delimiter = ","
+quotechar = "\""
+header = "present"
+
+[[file_rules]]
+glob = "dirty_bom_conflict.csv"
+encoding = "cp1252"
+delimiter = ","
+quotechar = "\""
+header = "present"
+
+[[file_rules]]
+glob = "encoding_ascii.csv"
+encoding = "ascii"
+delimiter = ","
+quotechar = "\""
+header = "present"
+
+[[file_rules]]
+glob = "encoding_cp1252.csv"
+encoding = "cp1252"
+delimiter = ","
+quotechar = "\""
+header = "present"
+
+[[file_rules]]
+glob = "encoding_iso8859-1.csv"
+encoding = "iso8859-1"
+delimiter = ","
+quotechar = "\""
+header = "present"
+
+[[file_rules]]
+glob = "encoding_iso8859-15.csv"
+encoding = "iso8859-15"
+delimiter = ","
+quotechar = "\""
+header = "present"
+
+[[file_rules]]
+glob = "encoding_cp437.csv"
+encoding = "cp437"
+delimiter = ","
+quotechar = "\""
+header = "present"
+
+[[file_rules]]
+glob = "encoding_cp850.csv"
+encoding = "cp850"
+delimiter = ","
+quotechar = "\""
+header = "present"
+
+[[file_rules]]
+glob = "encoding_cp858.csv"
+encoding = "cp858"
+delimiter = ","
+quotechar = "\""
+header = "present"
+
+[[file_rules]]
+glob = "encoding_cp1250.csv"
+encoding = "cp1250"
+delimiter = ","
+quotechar = "\""
+header = "present"
+
+[[file_rules]]
+glob = "encoding_cp1251.csv"
+encoding = "cp1251"
+delimiter = ","
+quotechar = "\""
+header = "present"
+
+[[file_rules]]
+glob = "encoding_koi8-r.csv"
+encoding = "koi8-r"
+delimiter = ","
+quotechar = "\""
+header = "present"
+
+[[file_rules]]
+glob = "encoding_cp1253.csv"
+encoding = "cp1253"
+delimiter = ","
+quotechar = "\""
+header = "present"
+
+[[file_rules]]
+glob = "encoding_cp1254.csv"
+encoding = "cp1254"
+delimiter = ","
+quotechar = "\""
+header = "present"
+
+[[file_rules]]
+glob = "encoding_cp1255.csv"
+encoding = "cp1255"
+delimiter = ","
+quotechar = "\""
+header = "present"
+
+[[file_rules]]
+glob = "encoding_cp1256.csv"
+encoding = "cp1256"
+delimiter = ","
+quotechar = "\""
+header = "present"
+
+[[file_rules]]
+glob = "encoding_cp1257.csv"
+encoding = "cp1257"
+delimiter = ","
+quotechar = "\""
+header = "present"
+
+[[file_rules]]
+glob = "encoding_cp1258.csv"
+encoding = "cp1258"
+delimiter = ","
+quotechar = "\""
+header = "present"
+
+[[file_rules]]
+glob = "encoding_utf-8-sig.csv"
+encoding = "utf-8-sig"
+delimiter = ","
+quotechar = "\""
+header = "present"
+
+[[file_rules]]
+glob = "encoding_utf-16-le.csv"
+encoding = "utf-16-le"
+delimiter = ","
+quotechar = "\""
+header = "present"
+
+[[file_rules]]
+glob = "encoding_utf-16-be.csv"
+encoding = "utf-16-be"
+delimiter = ","
+quotechar = "\""
+header = "present"
+
+[[file_rules]]
+glob = "encoding_utf-32-le.csv"
+encoding = "utf-32-le"
+delimiter = ","
+quotechar = "\""
+header = "present"
+
+[[file_rules]]
+glob = "encoding_utf-32-be.csv"
+encoding = "utf-32-be"
+delimiter = ","
+quotechar = "\""
+header = "present"
+
+[[file_rules]]
+glob = "encoding_shift_jis.csv"
+encoding = "shift_jis"
+delimiter = ","
+quotechar = "\""
+header = "present"
+
+[[file_rules]]
+glob = "encoding_cp932.csv"
+encoding = "cp932"
+delimiter = ","
+quotechar = "\""
+header = "present"
+
+[[file_rules]]
+glob = "encoding_euc_jp.csv"
+encoding = "euc_jp"
+delimiter = ","
+quotechar = "\""
+header = "present"
+
+[[file_rules]]
+glob = "encoding_gb18030.csv"
+encoding = "gb18030"
+delimiter = ","
+quotechar = "\""
+header = "present"
+
+[[file_rules]]
+glob = "encoding_gbk.csv"
+encoding = "gbk"
+delimiter = ","
+quotechar = "\""
+header = "present"
+
+[[file_rules]]
+glob = "encoding_big5.csv"
+encoding = "big5"
+delimiter = ","
+quotechar = "\""
+header = "present"
+
+[[file_rules]]
+glob = "encoding_euc_kr.csv"
+encoding = "euc_kr"
+delimiter = ","
+quotechar = "\""
+header = "present"
+
+[[file_rules]]
+glob = "encoding_cp949.csv"
+encoding = "cp949"
+delimiter = ","
+quotechar = "\""
+header = "present"
+
+[[file_rules]]
+glob = "ebcdic_cp037_lf.csv"
+encoding = "cp037"
+delimiter = ";"
+quotechar = "\""
+header = "present"
+nel_is_newline = false
+
+[[file_rules]]
+glob = "ebcdic_cp037_crlf.csv"
+encoding = "cp037"
+delimiter = ";"
+quotechar = "\""
+header = "present"
+nel_is_newline = false
+
+[[file_rules]]
+glob = "ebcdic_cp037_nel.csv"
+encoding = "cp037"
+delimiter = ";"
+quotechar = "\""
+header = "present"
+nel_is_newline = true
+
+[[file_rules]]
+glob = "ebcdic_cp500_lf.csv"
+encoding = "cp500"
+delimiter = ";"
+quotechar = "\""
+header = "present"
+nel_is_newline = false
+
+[[file_rules]]
+glob = "ebcdic_cp500_crlf.csv"
+encoding = "cp500"
+delimiter = ";"
+quotechar = "\""
+header = "present"
+nel_is_newline = false
+
+[[file_rules]]
+glob = "ebcdic_cp500_nel.csv"
+encoding = "cp500"
+delimiter = ";"
+quotechar = "\""
+header = "present"
+nel_is_newline = true
+
+[[file_rules]]
+glob = "ebcdic_cp1140_lf.csv"
+encoding = "cp1140"
+delimiter = ";"
+quotechar = "\""
+header = "present"
+nel_is_newline = false
+
+[[file_rules]]
+glob = "ebcdic_cp1140_crlf.csv"
+encoding = "cp1140"
+delimiter = ";"
+quotechar = "\""
+header = "present"
+nel_is_newline = false
+
+[[file_rules]]
+glob = "ebcdic_cp1140_nel.csv"
+encoding = "cp1140"
+delimiter = ";"
+quotechar = "\""
+header = "present"
+nel_is_newline = true
+
+[[file_rules]]
+glob = "ebcdic_multiline_nel.csv"
+encoding = "cp037"
+delimiter = ","
+quotechar = "\""
+header = "present"
+nel_is_newline = true
+
+[[file_rules]]
+glob = "ebcdic_display_numbers.csv"
+encoding = "cp037"
+delimiter = ","
+quotechar = "\""
+header = "present"

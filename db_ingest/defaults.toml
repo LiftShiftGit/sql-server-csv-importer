@@ -1,0 +1,281 @@
+# Complete validated defaults; init-config writes the shorter operator template.
+# Bounded ODBC/native bcp, guarded arrays and admitted file workers have scoped real tests.
+# Original acceptance contract is retained in contracts/ingest.example.toml.
+# Read docs/contract-deviations.md and TEST_EVIDENCE.md for unsupported/unexecuted clauses.
+# Edit real paths/server; test reports distinguish actual engine/driver/loader combinations.
+# Credentials: --username, --password-prompt, --password, --password-stdin,
+# or DB_USERNAME / DB_PASSWORD. Never commit a real password.
+# Precedence: CLI > named environment variables > per-file rule > global > default.
+# Matching file rules apply in listed order, last explicit setting wins.
+# Lists replace; repeated CLI --include/--exclude values replace configured lists.
+# Column specs replace the earlier spec for the same uniquely resolved selector.
+# Required preservation/durability constants cannot be disabled; invalid changes fail validation.
+
+config_version = 1
+
+[destination]
+type = "mssql"
+server = "localhost,1433"
+database = "LegacyLanding"
+schema = "dbo"
+control_database = "IngestControl"
+bootstrap_database = "master"
+driver = "ODBC Driver 18 for SQL Server"
+authentication = "sql"                    # sql | integrated
+encrypt = "yes"                          # yes | no; true/false aliases accepted
+trust_server_certificate = "no"           # Explicit yes skips certificate validation.
+connect_timeout_seconds = 15
+statement_timeout_seconds = 120
+create_databases = true
+create_schemas = true
+create_tables = true
+# DB_ENCRYPT and DB_TRUST_SERVER_CERTIFICATE override matching values.
+# DB_TRUST_SERVICE_CERTIFICATE is a supported spelling alias with a notice.
+# An unavailable control database must not be reported as "created."
+
+[source]
+root = 'D:\Exports'                       # Stable naming root for every run.
+path = 'D:\Exports'                       # File, root, or subdirectory to process.
+recursive = true
+include = ["**/*.csv", "**/*.tsv", "**/*.txt", "**/*.xyz"]
+exclude = ["**/ingest-work/**", "**/*.tmp"]
+follow_symlinks = false
+format = "auto"                          # auto | delimited | xml | html
+# Include globs match both root and nested files; test this deliberately.
+# To target extensionless/other files use include = ["**/*"] with content inspection.
+
+[mapping]
+database_strategy = "single"             # single | per_top_level_directory | per_directory | per_file
+table_strategy = "per_file"              # per_file | per_directory
+existing_target_strategy = "owned_landing" # owned_landing | mapped_business
+target_table = ""                        # Optional exact existing business table name.
+omit_target_columns = []                 # Explicit omitted generated/default/nullable targets.
+identity_policy = "generate"              # generate | preserve for mapped_business.
+allow_target_triggers = false            # Exact supplied values must survive approved triggers.
+database_prefix = "Import_"
+root_files = "root_database"             # root_database | error
+root_database = "LegacyLanding"
+root_table = "root_records"
+per_file_database_table = "data"
+directory_merge_schema = "strict"        # strict | union_by_name (explicit opt-in)
+name_collision = "filename_error" # filename_error (default) | path_error | stable_hash_suffix
+# per_file database_strategy + per_directory table_strategy is invalid.
+# Running a subtree must retain names relative to source.root.
+
+[parsing]
+record_terminator = "auto"         # auto CR/LF/CRLF; otherwise explicit 1..32 character token
+allow_multiline_fields = true       # false: quoted physical newline leaves an unresolved tail
+encoding = "auto"
+delimiter = "auto"                       # 1..32 character token, "\t", or "auto".
+quotechar = "auto"                       # 1..32 character qualifier, "none", or "auto".
+escapechar = "none"                      # 1..32 character escape token or "none".
+doublequote = true
+column_names = []                       # Optional ordered override; raw header bytes/fields remain retained.
+header = "auto"                          # auto | present | absent
+ambiguity_policy = "pause"               # pause | configured_override
+sample_records = 10000
+sample_bytes = 8388608
+nel_is_newline = false                  # Explicit EBCDIC NEL (0x15) record separators; delimiter required.
+strict_decoding = true
+null_tokens = []
+null_tokens_case_sensitive = true
+null_tokens_in_quoted_fields = false
+empty_string_is_null = false
+trim_whitespace = false
+blank_record_policy = "quarantine"       # quarantine | preserve | explicitly_skip
+ragged_row_policy = "quarantine"
+repeated_header_policy = "preserve_as_data"
+repair_policy = "none"
+# A malformed span with unknown row boundaries stays unresolved.
+# Noninteractive "pause" exits with a resumable NEEDS_DECISION report.
+
+[schema]
+inference = "full"                       # Full streaming validation before publication.
+text_fallback = "nvarchar"
+text_length_headroom_percent = 20
+allow_max_types = true
+new_columns_nullable = true
+infer_defaults = false                  # Existing defaults are inspected, not invented.
+numeric_policy = "exact"
+leading_zero_policy = "text"
+date_policy = "iso_unambiguous"
+timezone_policy = "preserve"
+fractional_second_policy = "preserve_exact"
+on_length_overflow = "ask"               # ask | quarantine | abort | widen | retype_text
+on_type_conflict = "retype_text"          # For new inferred columns only.
+on_append_schema_mismatch = "pause"
+allow_add_columns_on_append = false
+allow_widen_on_append = false
+allow_retype_on_append = false
+allow_lossy_projection = false
+# An explicit truncation/rounding policy also needs a per-column rule.
+# Do not silently convert exact numeric or temporal values through float/datetime.
+
+[load]
+mode = "append"                          # append | replace; always printed in the plan.
+engine = "auto"                          # auto | bcp | odbc
+preferred_engine = "bcp"
+fallback_engine = "odbc"
+batch_rows = 5000
+batch_bytes = 8388608
+fast_executemany = true
+partial_publish = "new_or_append"        # Quarantined rows -> non-clean status.
+replace_requires_complete_input = true
+replace_scope = "complete_group"         # complete_group | selected_subset (explicit whole-target replacement)
+allow_empty_replace = false
+retain_previous_generation = true
+target_lock_timeout_seconds = 60
+# "new_or_append" applies to isolated record rejects with known boundaries.
+# Unresolved framing or commit outcome blocks publication of that affected file/group.
+# Existing-target constraints/defaults/triggers remain active.
+# complete_group compares all known contributors, not just today's --source selection.
+
+[tools]
+bcp_path = "bcp"
+sqlcmd_path = "sqlcmd"
+sqlcmd_variant = "odbc"
+detect_versions = true
+capture_stdout_stderr = true
+# Tools get their own tested TLS argument mappings; do not copy flags between them.
+# engine=bcp must fail if unavailable; engine=auto can explain an ODBC fallback.
+
+[credentials]
+password_source = "prompt"               # Prompt when no explicit CLI/env input supplied.
+allow_password_in_child_args = false
+redact_secrets = true
+# bcp -P can expose a password in process arguments. Set true to select that
+# documented SQL-auth path intentionally. No repeated confirmation is then needed.
+# SQLCMDPASSWORD is for sqlcmd; do not assume bcp consumes it.
+
+[preservation]
+work_directory = 'D:\ingest-work'
+capture_original_bytes = true
+hash = "sha256"
+source_change_policy = "abort"
+retain_originals = "indefinitely"
+retain_journal = "indefinitely"
+retain_failure_artifacts = "indefinitely"
+cleanup_verified_transport_spools = false
+minimum_free_disk_bytes = 2147483648
+flush_durable_checkpoints = true
+# This directory must be excluded from discovery and be on durable writable storage.
+# No automatic retention cleanup may remove the only surviving source/failure copy.
+
+[audit]
+control_schema = "audit"
+failure_schema = "failures"
+create_failure_tables = true
+failure_table_pattern = "{table}_fail_{utc_timestamp}_{run_short}"
+local_failure_fallback = true
+mirror_receipts_after_commit = true
+event_timestamps = "utc"
+json_log = true
+console_log_level = "INFO"
+show_raw_errors = false
+log_source_values = false
+# Raw diagnostics remain retrievable in protected artifacts, with secrets redacted.
+
+[verification]
+level = "full"                           # full | counts | sample; report assurance explicitly.
+sample_records = 10000                   # Only used in the explicitly weaker sample mode.
+unresolved_policy = "block_affected_publication"
+# Source-byte hashes, record accounting and receipt checks apply at EVERY level.
+# Full checks all applicable typed values/BLOB hashes inside publication transactions.
+# Full mode blocks before mutation if the target cannot support required lineage/readback.
+# Counts/sample are reduced-assurance outcomes (exit 3), never CLEAN_VERIFIED.
+
+[parallel]
+enabled = true
+max_workers = 2
+strategy = "files"
+serialize_same_target_publication = true
+
+[limits]
+total_process_tree_memory_bytes = 536870912
+worker_memory_bytes = 201326592
+max_in_memory_record_bytes = 8388608
+max_in_memory_field_bytes = 8388608
+max_queue_bytes = 16777216
+fetch_bytes = 8388608
+output_buffer_bytes = 32768               # Bounded native tool version/help capture; max1MiB.
+oversized_record_policy = "preserve_and_quarantine"
+# Measured native-driver/subprocess allocations count against the global budget.
+# A tested streaming LOB path can raise supported value sizes without loading them whole.
+
+[retry]
+max_attempts = 3
+initial_backoff_seconds = 1
+maximum_backoff_seconds = 15
+jitter = true
+require_commit_resolution = true
+
+[interaction]
+non_interactive = false
+on_required_decision = "pause"
+
+[xml]
+enabled = false
+record_selector = ""
+fields = []                               # [{name="id", path="@id"}, {name="label", path="label"}]
+allow_entities = false
+allow_network = false
+max_depth = 64
+# Enabling requires explicit record/namespace and scalar field mappings.
+
+[html]
+enabled = false
+table_selector = ""
+fields = []                               # Declared ordered field names.
+text_policy = "preserve"                  # Preserve decoded cell text, whitespace included.
+allow_nested_tables = false
+allow_rowspan_colspan = false
+# Enabling requires a declared table, field/header and text-extraction policy.
+
+# PER-FILE OVERRIDES -- commented so these do not affect unrelated source files.
+# Activate only after examining your actual exports.
+#
+# [[file_rules]]
+# glob = "folder_a/**/*.xyz"
+# format = "delimited"
+# encoding = "cp1252"
+# delimiter = "|"
+# quotechar = '"'
+# header = "present"
+#
+# [[file_rules.columns]]
+# source_name = "CaseNumber"
+# source_ordinal = 1                      # 1-based; disambiguates duplicate header names.
+# target_name = "case_number"
+# target_type = "nvarchar(80)"
+# nullable = true
+#
+# [[file_rules.columns]]
+# source_name = "Amount"
+# source_ordinal = 4
+# target_type = "decimal(19,4)"
+# nullable = true
+#
+# [[file_rules.columns]]
+# source_name = "OccurredAt"
+# source_ordinal = 5
+# target_type = "datetimeoffset(7)"
+# temporal_format = "iso8601"
+# timezone_policy = "preserve"
+#
+# [[file_rules.columns]]
+# source_name = "Attachment"
+# source_ordinal = 6
+# target_type = "varbinary(max)"
+# binary_encoding = "base64"
+#
+# XML/HTML scalar-field mappings must be concrete, documented and validated by the
+# implemented adapters. Selecting a format alone never authorizes arbitrary flattening.
+
+# Directory import presets (edit existing sections above; do not repeat section headers):
+# Filename per CSV: mapping.table_strategy="per_file", mapping.name_collision="filename_error"
+# Folder + filename: mapping.table_strategy="per_file", mapping.name_collision="path_error"
+# Merge each folder: mapping.table_strategy="per_directory", mapping.name_collision="path_error"
+# path_error joins relative folder/file names with one underscore: north/orders.csv -> north_orders.
+# Merge uses direct files in each folder; nested folders form separate tables; root uses mapping.root_table.
+# One-off import: load.mode="create_only" refuses existing targets; same-run recovery stays safe.
+# Repeated feeds: load.mode="append"; intentional replacement: load.mode="replace".

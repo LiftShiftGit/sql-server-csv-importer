@@ -1,0 +1,83 @@
+# db_ingest: edit these paths and server, then run with --config ingest.toml.
+# Password: use --password-prompt, --password-stdin, or DB_PASSWORD.
+config_version = 1
+
+[destination]
+server = "localhost,1433"
+database = "LegacyLanding"
+control_database = "IngestControl"
+schema = "dbo"
+driver = "ODBC Driver 18 for SQL Server"
+authentication = "sql"       # sql | integrated
+# For a trusted production certificate, keep the default settings below.
+encrypt = "yes"
+trust_server_certificate = "no"
+# Create only the configured/mapped databases when this account has permission.
+create_databases = true
+
+[source]
+root = 'D:\Exports'            # Stable naming root, even when importing a subtree.
+# path = ''                  # Omit/empty uses root; set a file/subfolder to narrow.
+include = ["**/*.csv", "**/*.tsv", "**/*.txt", "**/*.xyz"]
+recursive = true
+# format = "delimited"        # Set for an explicitly configured export dialect.
+
+[mapping]
+# Default: orders.csv -> orders. Conflicting basenames fail; never merge/overwrite.
+name_collision = "filename_error"
+# Use "stable_hash_suffix" for path-derived names (including older hashed imports).
+# Use "path_error" for readable folder prefixes with single underscores.
+# Directory merging supports path_error or stable_hash_suffix; multi-database/business mappings require hashes.
+
+[parsing]
+encoding = "auto"             # BOM/strictUTF8; set cp1252 explicitly if required.
+delimiter = "auto"            # 1..32 characters; set explicitly for a custom dialect.
+# Uncomment only controls used by the actual export (tokens must be unambiguous):
+# quotechar = "@@"             # Default is the conventional double quote.
+# escapechar = "!!"            # Default is no escape token.
+# record_terminator = "\r\n"  # Default auto accepts CR/LF/CRLF; e.g."<END>" is also valid.
+# allow_multiline_fields = false # Unexpected quoted newline leaves an unresolved tail.
+# column_names = ["id", "label", "amount"] # Explicit names for absent/incomplete headers.
+# nel_is_newline = true         # EBCDIC NEL separators only; delimiter must be explicit.
+header = "auto"               # Set present or absent after inspecting your files.
+null_tokens = []              # Empty text stays empty; e.g.["\\N"] declares NULL.
+
+[load]
+mode = "append"               # create_only: new tables only; replace: reviewed replacement with retention.
+engine = "auto"               # auto | odbc | bcp; the plan records actual selection.
+batch_rows = 5000
+batch_bytes = 8388608          # 8MiB; both row and byte bounds apply.
+# fast_executemany = false    # Direct scalar ODBC; compare for wide LOB values.
+
+[parallel]
+enabled = true               # Up to2 file workers; admission respects memory budgets.
+max_workers = 2
+
+[preservation]
+work_directory = 'D:\ingest-work' # Durable capture+journal; always excluded from input.
+
+# Native bcp must support the configured TLS flags. Run doctor to see installed tools.
+# [tools]
+# bcp_path = 'C:\path\to\bcp.exe'
+# SQL-auth bcp exposes its password to child process inspection; opt in deliberately:
+# [credentials]
+# allow_password_in_child_args = true
+
+# Column overrides are optional. Ordinals are 1-based and resolve duplicate headers.
+# [[file_rules]]
+# glob = "folder_a/**/*.csv"
+# [[file_rules.columns]]
+# source_ordinal = 1
+# target_type = "nvarchar(40)"  # Preserve leading-zero IDs as text.
+# [[file_rules.columns]]
+# source_ordinal = 4
+# target_type = "decimal(19,4)"
+
+# Directory import presets (edit existing sections above; do not repeat section headers):
+# Filename per CSV: mapping.table_strategy="per_file", mapping.name_collision="filename_error"
+# Folder + filename: mapping.table_strategy="per_file", mapping.name_collision="path_error"
+# Merge each folder: mapping.table_strategy="per_directory", mapping.name_collision="path_error"
+# path_error joins relative folder/file names with one underscore: north/orders.csv -> north_orders.
+# Merge uses direct files in each folder; nested folders form separate tables; root uses mapping.root_table.
+# One-off import: load.mode="create_only" refuses existing targets; same-run recovery stays safe.
+# Repeated feeds: load.mode="append"; intentional replacement: load.mode="replace".

@@ -1,0 +1,39 @@
+# Example only: replace the endpoint/paths; preprovision both databases.
+# Password: CLI --password-prompt / --password-stdin or DB_PASSWORD, never TOML.
+config_version = 1
+[destination]
+server = "imports-sql.abcdefghijkl.us-east-1.rds.amazonaws.com,1433"
+database = "LegacyLanding"
+control_database = "IngestControl"
+authentication = "sql"
+create_databases = false
+create_schemas = true
+create_tables = true
+encrypt = "yes"
+trust_server_certificate = "no"
+
+[source]
+root = 'D:\Exports'
+# path omitted: use root; set a file/subfolder only to narrow selection
+include = ["**/*.csv", "**/*.CSV"]
+recursive = true
+format = "delimited"
+
+[parsing]
+header = "present"
+delimiter = ","
+quotechar = '"'          # Text qualifier: a literal double quote
+doublequote = true       # Within quoted text, "" represents one literal "
+escapechar = "none"      # Set explicitly only if the producer uses escapes
+record_terminator = "auto" # CR, LF or CRLF
+encoding = "utf-8"
+
+[load]
+engine = "odbc"
+mode = "append"
+
+[parallel]
+enabled = false
+
+[preservation]
+work_directory = 'C:\Projects\db-ingest\.local\work'

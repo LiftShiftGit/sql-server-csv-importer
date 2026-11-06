@@ -1,0 +1,4013 @@
+{
+  "format": "db_ingest_fixture_manifest",
+  "version": 1,
+  "seed": 20261029,
+  "destination": "mssql",
+  "oracle": "authored/formula; independent of importer",
+  "fixtures": [
+    {
+      "path": "csv.csv",
+      "category": "csv",
+      "size": 25,
+      "sha256": "7e166392253dcb39ac8b69574b22cb53c1a6795fdc33ecda0c52d0933a7283f9",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "utf-8",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "csv.csv.expected.jsonl",
+      "expected_rows": 2,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 3,
+      "physical_lines": 3,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "bigint",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            3
+          ],
+          "count": 2,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [],
+      "overrides": {}
+    },
+    {
+      "path": "tabbed.tsv",
+      "category": "tsv",
+      "size": 23,
+      "sha256": "a1faa261b59b7b4415e7ab79691f5af493c6f20a6fa2c23ac94fd018af266c41",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "utf-8",
+      "delimiter": "\t",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "tabbed.tsv.expected.jsonl",
+      "expected_rows": 1,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 2,
+      "physical_lines": 2,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "bigint",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            2
+          ],
+          "count": 1,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [],
+      "overrides": {}
+    },
+    {
+      "path": "pipe.txt",
+      "category": "non_standard_delimiters",
+      "size": 26,
+      "sha256": "9fbcab5e09b96cf7b845d9203ace12e4f3a2a697bb057008f15050f03326eb0b",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "utf-8",
+      "delimiter": "|",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "pipe.txt.expected.jsonl",
+      "expected_rows": 1,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 2,
+      "physical_lines": 2,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "bigint",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            2
+          ],
+          "count": 1,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [],
+      "overrides": {}
+    },
+    {
+      "path": "semicolon.txt",
+      "category": "non_standard_delimiters",
+      "size": 26,
+      "sha256": "9e06f1d2e771e47b20a1c6c3af52b42b91d4561975961fe5de942609e0990c88",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "utf-8",
+      "delimiter": ";",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "semicolon.txt.expected.jsonl",
+      "expected_rows": 1,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 2,
+      "physical_lines": 2,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "bigint",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            2
+          ],
+          "count": 1,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [],
+      "overrides": {}
+    },
+    {
+      "path": "custom.txt",
+      "category": "non_standard_delimiters",
+      "size": 26,
+      "sha256": "4a56462aa7cbf5a8a075b5d7a54f30da09ffd5541c2f43c2edbd30af174bcd58",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "utf-8",
+      "delimiter": "~",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "custom.txt.expected.jsonl",
+      "expected_rows": 1,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 2,
+      "physical_lines": 2,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "bigint",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            2
+          ],
+          "count": 1,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [],
+      "overrides": {}
+    },
+    {
+      "path": "no_header.csv",
+      "category": "csv_no_header",
+      "size": 23,
+      "sha256": "0e355a67e6ee80af9c2ecf58aa63ba39cfdd0215054c4b57a1ed3a064e832cc1",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "utf-8",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "absent",
+      "expected_path": "no_header.csv.expected.jsonl",
+      "expected_rows": 2,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 2,
+      "physical_lines": 2,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal_range": [
+            1,
+            2
+          ],
+          "count": 2,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [],
+      "overrides": {}
+    },
+    {
+      "path": "duplicate.csv",
+      "category": "csv_duplicate_headers",
+      "size": 37,
+      "sha256": "75d11c7695cc4c58af428521881356e41b3138260c9a55064398b634b0de0144",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "utf-8",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "duplicate.csv.expected.jsonl",
+      "expected_rows": 1,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 2,
+      "physical_lines": 2,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 3,
+          "target_name": "fixture_c3",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 4,
+          "target_name": "fixture_c4",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            2
+          ],
+          "count": 1,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [
+        "All four ordered fields survive duplicate/blank/reserved labels."
+      ],
+      "overrides": {}
+    },
+    {
+      "path": "nulls.csv",
+      "category": "csv_nulls_defaults",
+      "size": 24,
+      "sha256": "19c9f5a4ec49d6a97cce62b78ebc9b25fd6f4e0cfa6f21600f6dfca690a4714a",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "utf-8",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "nulls.csv.expected.jsonl",
+      "expected_rows": 1,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 2,
+      "physical_lines": 2,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 3,
+          "target_name": "fixture_c3",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 4,
+          "target_name": "fixture_c4",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            2
+          ],
+          "count": 1,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [
+        "Explicit SQL NULL differs from empty and quoted NULL; no default is inferred."
+      ],
+      "overrides": {
+        "null_tokens": [
+          "NULL"
+        ],
+        "null_tokens_in_quoted_fields": false
+      }
+    },
+    {
+      "path": "integer_boundaries.csv",
+      "category": "csv_type_boundaries",
+      "size": 125,
+      "sha256": "c090f705efd80e159a385c43784ab4e898421dae469d385463ad373f99f0eaac",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "utf-8",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "integer_boundaries.csv.expected.jsonl",
+      "expected_rows": 4,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 5,
+      "physical_lines": 5,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            5
+          ],
+          "count": 4,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [
+        "Mixed beyond-38-digit column must remain text, without rounding."
+      ],
+      "overrides": {}
+    },
+    {
+      "path": "exact_types.csv",
+      "category": "csv_type_boundaries",
+      "size": 161,
+      "sha256": "671424f03cc756b305f72ce364c4a174c4a49d9119251eaf7f296fc21429a378",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "utf-8",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "exact_types.csv.expected.jsonl",
+      "expected_rows": 1,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 2,
+      "physical_lines": 2,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "decimal(38,4)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "date",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 3,
+          "target_name": "fixture_c3",
+          "target_type": "datetime2(7)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 4,
+          "target_name": "fixture_c4",
+          "target_type": "datetimeoffset(7)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 5,
+          "target_name": "fixture_c5",
+          "target_type": "uniqueidentifier",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            2
+          ],
+          "count": 1,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [],
+      "overrides": {}
+    },
+    {
+      "path": "unicode.csv",
+      "category": "csv_unicode",
+      "size": 56,
+      "sha256": "1648e58f78600d1e15f1e47743fa3fbbaabff95ac2e4d99342722dd1a6989a05",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "utf-8",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "unicode.csv.expected.jsonl",
+      "expected_rows": 2,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 3,
+      "physical_lines": 3,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            3
+          ],
+          "count": 2,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [],
+      "overrides": {}
+    },
+    {
+      "path": "utf8_bom.csv",
+      "category": "csv_unicode",
+      "size": 14,
+      "sha256": "972d2e8521a250d4ce9a7eee90e0834d9a66d8da103c3063fec81c2fbedae210",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "utf-8-sig",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "utf8_bom.csv.expected.jsonl",
+      "expected_rows": 1,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 2,
+      "physical_lines": null,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "bigint",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            2
+          ],
+          "count": 1,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [],
+      "overrides": {}
+    },
+    {
+      "path": "utf16.csv",
+      "category": "csv_unicode",
+      "size": 18,
+      "sha256": "ac919c7eb8d8935c2c57067bd633fe04611d254e5bf0072ed805f6b4b73cc416",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "utf-16",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "utf16.csv.expected.jsonl",
+      "expected_rows": 1,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 2,
+      "physical_lines": null,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "bigint",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            2
+          ],
+          "count": 1,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [],
+      "overrides": {}
+    },
+    {
+      "path": "multiline.csv",
+      "category": "csv_multiline",
+      "size": 51,
+      "sha256": "0b336f03333eb2968c460945cb407a01ede069d169458fc70f4d927f622a3cf4",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "utf-8",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "multiline.csv.expected.jsonl",
+      "expected_rows": 2,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 3,
+      "physical_lines": 4,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "bigint",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            3
+          ],
+          "count": 2,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [],
+      "overrides": {}
+    },
+    {
+      "path": "escape_rfc.csv",
+      "category": "csv_escaping",
+      "size": 56,
+      "sha256": "4f39423d72c18426a2e5140aca99684f5cbe329d4aaeb774078dd4741ec04b3e",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "utf-8",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "escape_rfc.csv.expected.jsonl",
+      "expected_rows": 3,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 4,
+      "physical_lines": 4,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            4
+          ],
+          "count": 3,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [],
+      "overrides": {}
+    },
+    {
+      "path": "escape_backslash.csv",
+      "category": "csv_escaping",
+      "size": 41,
+      "sha256": "61045ea110d46572b930c1eb87fd7361f271fad8493465768212c012c22cc66b",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "utf-8",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "escape_backslash.csv.expected.jsonl",
+      "expected_rows": 1,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 2,
+      "physical_lines": 2,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            2
+          ],
+          "count": 1,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [],
+      "overrides": {
+        "escapechar": "\\",
+        "doublequote": false
+      }
+    },
+    {
+      "path": "escape_unquoted.csv",
+      "category": "csv_escaping",
+      "size": 35,
+      "sha256": "45a481557b21ad9fadb83e6a372b5e3a24c2aa711b3cf15f52c9ee06dfa9ab2b",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "utf-8",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "escape_unquoted.csv.expected.jsonl",
+      "expected_rows": 2,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 3,
+      "physical_lines": 3,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            3
+          ],
+          "count": 2,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [],
+      "overrides": {
+        "quotechar": "none",
+        "escapechar": "\\"
+      }
+    },
+    {
+      "path": "escape_single_quote.csv",
+      "category": "csv_escaping",
+      "size": 35,
+      "sha256": "5a7336a518881ca8669f83d1cc20a40695e597513086227ad3e7ba38589d7fab",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "utf-8",
+      "delimiter": ";",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "escape_single_quote.csv.expected.jsonl",
+      "expected_rows": 1,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 2,
+      "physical_lines": 2,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            2
+          ],
+          "count": 1,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [],
+      "overrides": {
+        "quotechar": "'"
+      }
+    },
+    {
+      "path": "escape_multiline.csv",
+      "category": "csv_escaping",
+      "size": 35,
+      "sha256": "5ad710d9212bfd2643f1915d2199655388f9121fd041354142239fa282a57d79",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "utf-8",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "escape_multiline.csv.expected.jsonl",
+      "expected_rows": 1,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 2,
+      "physical_lines": 5,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            2
+          ],
+          "count": 1,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [],
+      "overrides": {}
+    },
+    {
+      "path": "escape_mixed_endings.csv",
+      "category": "csv_escaping",
+      "size": 36,
+      "sha256": "295c008401b859e20ca68cc49ab367f93ede0f5581f02a4dd669f89e62f9464e",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "utf-8",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "escape_mixed_endings.csv.expected.jsonl",
+      "expected_rows": 3,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 4,
+      "physical_lines": 4,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            4
+          ],
+          "count": 3,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [],
+      "overrides": {}
+    },
+    {
+      "path": "escape_spaces.csv",
+      "category": "csv_escaping",
+      "size": 56,
+      "sha256": "3a20457ae1ed8e4e6f21540a5ad2c4a30336356a1c74476eb0028078b2b2769e",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "utf-8",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "escape_spaces.csv.expected.jsonl",
+      "expected_rows": 3,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 4,
+      "physical_lines": 4,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            4
+          ],
+          "count": 3,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [],
+      "overrides": {}
+    },
+    {
+      "path": "escape_trailing_empty.csv",
+      "category": "csv_escaping",
+      "size": 35,
+      "sha256": "6a0d07b2ff8747b2cb527e41bc1d5f83a0e395ed78790bd907db052a724951ab",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "utf-8",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "escape_trailing_empty.csv.expected.jsonl",
+      "expected_rows": 2,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 3,
+      "physical_lines": 3,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 3,
+          "target_name": "fixture_c3",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            3
+          ],
+          "count": 2,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [],
+      "overrides": {
+        "null_tokens": [
+          "NULL"
+        ]
+      }
+    },
+    {
+      "path": "escape_literal_backslash.csv",
+      "category": "csv_escaping",
+      "size": 27,
+      "sha256": "bae67139feaa02880ac2f9b603ed7add7c5e56c0479f0bb84aab2c1179772fc4",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "utf-8",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "escape_literal_backslash.csv.expected.jsonl",
+      "expected_rows": 1,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 2,
+      "physical_lines": 2,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            2
+          ],
+          "count": 1,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [],
+      "overrides": {}
+    },
+    {
+      "path": "escape_nel_literal.csv",
+      "category": "csv_escaping",
+      "size": 30,
+      "sha256": "efe8654a401d7d1dfcdf46cb10b2f6c7243135e3a6fef97df4fc044658864cbb",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "utf-8",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "escape_nel_literal.csv.expected.jsonl",
+      "expected_rows": 1,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 2,
+      "physical_lines": 2,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            2
+          ],
+          "count": 1,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [],
+      "overrides": {}
+    },
+    {
+      "path": "dirty_ragged.csv",
+      "category": "csv_dirty",
+      "size": 45,
+      "sha256": "cbcae6f16a0d7b2f1d7cfd7b57d23e2cbfb3d51cdbc3fddf0014386dde99ff3f",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "utf-8",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "dirty_ragged.csv.expected.jsonl",
+      "expected_rows": 2,
+      "expected_outcome": "rejected",
+      "rejected_ordinals": [
+        3,
+        4
+      ],
+      "logical_records": 5,
+      "physical_lines": 5,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            5
+          ],
+          "count": 2,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        },
+        {
+          "ordinal": 3,
+          "outcome": "rejected",
+          "reason_codes": [
+            "ROW_WIDTH"
+          ],
+          "reason": "authored invalid representation"
+        },
+        {
+          "ordinal": 4,
+          "outcome": "rejected",
+          "reason_codes": [
+            "ROW_WIDTH"
+          ],
+          "reason": "authored invalid representation"
+        }
+      ],
+      "expected_reason_codes": [
+        "ROW_WIDTH"
+      ],
+      "notes": [],
+      "overrides": {}
+    },
+    {
+      "path": "dirty_postquote.csv",
+      "category": "csv_dirty",
+      "size": 32,
+      "sha256": "57699bb16ceee1fbce8b0e0c43b79b6e611dbbdc03846256008ca558387102aa",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "utf-8",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "dirty_postquote.csv.expected.jsonl",
+      "expected_rows": 1,
+      "expected_outcome": "rejected",
+      "rejected_ordinals": [
+        2
+      ],
+      "logical_records": 3,
+      "physical_lines": 3,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            3,
+            3
+          ],
+          "count": 1,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        },
+        {
+          "ordinal": 2,
+          "outcome": "rejected",
+          "reason_codes": [
+            "CSV_INVALID"
+          ],
+          "reason": "authored invalid representation"
+        }
+      ],
+      "expected_reason_codes": [
+        "CSV_INVALID"
+      ],
+      "notes": [],
+      "overrides": {}
+    },
+    {
+      "path": "dirty_blank.csv",
+      "category": "csv_dirty",
+      "size": 19,
+      "sha256": "8422917d36e08b8ac2c1784f5d37fc2c2ba48c294d638255051951f953006f87",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "utf-8",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "dirty_blank.csv.expected.jsonl",
+      "expected_rows": 1,
+      "expected_outcome": "rejected",
+      "rejected_ordinals": [
+        2
+      ],
+      "logical_records": 3,
+      "physical_lines": 3,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            3,
+            3
+          ],
+          "count": 1,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        },
+        {
+          "ordinal": 2,
+          "outcome": "rejected",
+          "reason_codes": [
+            "BLANK_RECORD"
+          ],
+          "reason": "authored invalid representation"
+        }
+      ],
+      "expected_reason_codes": [
+        "BLANK_RECORD"
+      ],
+      "notes": [],
+      "overrides": {}
+    },
+    {
+      "path": "dirty_unclosed.csv",
+      "category": "csv_dirty",
+      "size": 48,
+      "sha256": "dbecfefb2b706bb8b1500c18a24efb9365fe4f76cc961b0ab788408832db24bd",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "utf-8",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "dirty_unclosed.csv.expected.jsonl",
+      "expected_rows": 1,
+      "expected_outcome": "unresolved",
+      "rejected_ordinals": [],
+      "logical_records": null,
+      "physical_lines": 4,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            2
+          ],
+          "count": 1,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        },
+        {
+          "ordinal": null,
+          "outcome": "unresolved",
+          "reason_codes": [
+            "FRAMING_UNRESOLVED"
+          ],
+          "reason": "boundaries/count remain unknown; original bytes retained"
+        }
+      ],
+      "expected_reason_codes": [
+        "FRAMING_UNRESOLVED"
+      ],
+      "notes": [],
+      "overrides": {}
+    },
+    {
+      "path": "dirty_dangling_escape.csv",
+      "category": "csv_dirty",
+      "size": 19,
+      "sha256": "7ee894f78e71cf60b8ba33c3a93cf21e06c97328d519325a3099f541d6e76114",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "utf-8",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "dirty_dangling_escape.csv.expected.jsonl",
+      "expected_rows": 0,
+      "expected_outcome": "unresolved",
+      "rejected_ordinals": [],
+      "logical_records": null,
+      "physical_lines": 2,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "bigint",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal": null,
+          "outcome": "unresolved",
+          "reason_codes": [
+            "FRAMING_UNRESOLVED"
+          ],
+          "reason": "boundaries/count remain unknown; original bytes retained"
+        }
+      ],
+      "expected_reason_codes": [
+        "FRAMING_UNRESOLVED"
+      ],
+      "notes": [],
+      "overrides": {
+        "escapechar": "\\"
+      }
+    },
+    {
+      "path": "dirty_utf8.csv",
+      "category": "csv_dirty",
+      "size": 17,
+      "sha256": "89a701bcaa5939f1359e341ce6ee21f7204e30ff8504fc32db0b18d1821eedda",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "utf-8",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "dirty_utf8.csv.expected.jsonl",
+      "expected_rows": 0,
+      "expected_outcome": "encoding_failure",
+      "rejected_ordinals": [],
+      "logical_records": null,
+      "physical_lines": 2,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "bigint",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal": null,
+          "outcome": "file_failure",
+          "reason_codes": [
+            "ENCODING_DECISION",
+            "ENCODING_INVALID"
+          ],
+          "reason": "boundaries/count remain unknown; original bytes retained"
+        }
+      ],
+      "expected_reason_codes": [
+        "ENCODING_DECISION",
+        "ENCODING_INVALID"
+      ],
+      "notes": [],
+      "overrides": {}
+    },
+    {
+      "path": "dirty_mixed_encoding.csv",
+      "category": "csv_dirty",
+      "size": 20,
+      "sha256": "2f155790b3d75889605741c6c71ccef3d471efbe1b2ef7b4538a414ecf0bf3fe",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "utf-8",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "dirty_mixed_encoding.csv.expected.jsonl",
+      "expected_rows": 0,
+      "expected_outcome": "encoding_failure",
+      "rejected_ordinals": [],
+      "logical_records": null,
+      "physical_lines": 2,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "bigint",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal": null,
+          "outcome": "file_failure",
+          "reason_codes": [
+            "ENCODING_DECISION",
+            "ENCODING_INVALID"
+          ],
+          "reason": "boundaries/count remain unknown; original bytes retained"
+        }
+      ],
+      "expected_reason_codes": [
+        "ENCODING_DECISION",
+        "ENCODING_INVALID"
+      ],
+      "notes": [],
+      "overrides": {}
+    },
+    {
+      "path": "dirty_undefined_cp1252.csv",
+      "category": "csv_dirty",
+      "size": 17,
+      "sha256": "cdf0c832fc0f0db18aad252ee67ee3511eedfb638ff80b8f3b6b01f417ed81b7",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "cp1252",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "dirty_undefined_cp1252.csv.expected.jsonl",
+      "expected_rows": 0,
+      "expected_outcome": "encoding_failure",
+      "rejected_ordinals": [],
+      "logical_records": null,
+      "physical_lines": 2,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "bigint",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal": null,
+          "outcome": "file_failure",
+          "reason_codes": [
+            "ENCODING_DECISION",
+            "ENCODING_INVALID"
+          ],
+          "reason": "boundaries/count remain unknown; original bytes retained"
+        }
+      ],
+      "expected_reason_codes": [
+        "ENCODING_DECISION",
+        "ENCODING_INVALID"
+      ],
+      "notes": [],
+      "overrides": {}
+    },
+    {
+      "path": "dirty_truncated_utf16.csv",
+      "category": "csv_dirty",
+      "size": 15,
+      "sha256": "19cbfdfa5705f7de28080fd41c3ed270f813bb307c10e00bcf8934411e924a6e",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "utf-16-le",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "dirty_truncated_utf16.csv.expected.jsonl",
+      "expected_rows": 0,
+      "expected_outcome": "encoding_failure",
+      "rejected_ordinals": [],
+      "logical_records": null,
+      "physical_lines": null,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "bigint",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal": null,
+          "outcome": "file_failure",
+          "reason_codes": [
+            "ENCODING_DECISION",
+            "ENCODING_INVALID"
+          ],
+          "reason": "boundaries/count remain unknown; original bytes retained"
+        }
+      ],
+      "expected_reason_codes": [
+        "ENCODING_DECISION",
+        "ENCODING_INVALID"
+      ],
+      "notes": [],
+      "overrides": {}
+    },
+    {
+      "path": "dirty_nul.csv",
+      "category": "csv_dirty",
+      "size": 25,
+      "sha256": "1ea1e681106af09e61b338372e0d2a3bfc44038b76153da26615e27fc44be254",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "utf-8",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "dirty_nul.csv.expected.jsonl",
+      "expected_rows": 0,
+      "expected_outcome": "unsupported_format",
+      "rejected_ordinals": [],
+      "logical_records": null,
+      "physical_lines": 2,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "bigint",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal": null,
+          "outcome": "file_failure",
+          "reason_codes": [
+            "UNSUPPORTED_FORMAT"
+          ],
+          "reason": "boundaries/count remain unknown; original bytes retained"
+        }
+      ],
+      "expected_reason_codes": [
+        "UNSUPPORTED_FORMAT"
+      ],
+      "notes": [],
+      "overrides": {}
+    },
+    {
+      "path": "dirty_bom_conflict.csv",
+      "category": "csv_dirty",
+      "size": 21,
+      "sha256": "8a2b329592d5b3ff396f689bad002403c056a11a8c658382e445bd2051efd033",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "cp1252",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "dirty_bom_conflict.csv.expected.jsonl",
+      "expected_rows": 0,
+      "expected_outcome": "encoding_failure",
+      "rejected_ordinals": [],
+      "logical_records": null,
+      "physical_lines": 2,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "bigint",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal": null,
+          "outcome": "file_failure",
+          "reason_codes": [
+            "ENCODING_BOM_CONFLICT"
+          ],
+          "reason": "boundaries/count remain unknown; original bytes retained"
+        }
+      ],
+      "expected_reason_codes": [
+        "ENCODING_BOM_CONFLICT"
+      ],
+      "notes": [],
+      "overrides": {}
+    },
+    {
+      "path": "encoding_ascii.csv",
+      "category": "csv_legacy_encodings",
+      "size": 32,
+      "sha256": "aef2c79e7b9d9d2eb8ac75612ce6486b141050bcf532dac0aba6c75c2fa994ad",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "ascii",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "encoding_ascii.csv.expected.jsonl",
+      "expected_rows": 1,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 2,
+      "physical_lines": 2,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            2
+          ],
+          "count": 1,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [],
+      "overrides": {}
+    },
+    {
+      "path": "encoding_cp1252.csv",
+      "category": "csv_legacy_encodings",
+      "size": 37,
+      "sha256": "04e8a61200b9527825de6a5a7f9b7bb569683f736dadaabbdf27f489a75f0cdf",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "cp1252",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "encoding_cp1252.csv.expected.jsonl",
+      "expected_rows": 1,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 2,
+      "physical_lines": 2,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            2
+          ],
+          "count": 1,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [],
+      "overrides": {}
+    },
+    {
+      "path": "encoding_iso8859-1.csv",
+      "category": "csv_legacy_encodings",
+      "size": 30,
+      "sha256": "208ba1c933b5fdd0107eb786ea42ee7644963633c7253e0a8b9c6fa724283f1d",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "iso8859-1",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "encoding_iso8859-1.csv.expected.jsonl",
+      "expected_rows": 1,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 2,
+      "physical_lines": null,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            2
+          ],
+          "count": 1,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [],
+      "overrides": {}
+    },
+    {
+      "path": "encoding_iso8859-15.csv",
+      "category": "csv_legacy_encodings",
+      "size": 30,
+      "sha256": "8cef63b52aeafb7661cdb9ff3297a65fa5d6161d53813e87da6f293155b7543d",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "iso8859-15",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "encoding_iso8859-15.csv.expected.jsonl",
+      "expected_rows": 1,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 2,
+      "physical_lines": null,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            2
+          ],
+          "count": 1,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [],
+      "overrides": {}
+    },
+    {
+      "path": "encoding_cp437.csv",
+      "category": "csv_legacy_encodings",
+      "size": 31,
+      "sha256": "aaeab5ee2a1b97c9c15a40619ffe887a700d6536e5dcb98d02ef75b0e9702348",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "cp437",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "encoding_cp437.csv.expected.jsonl",
+      "expected_rows": 1,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 2,
+      "physical_lines": null,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            2
+          ],
+          "count": 1,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [],
+      "overrides": {}
+    },
+    {
+      "path": "encoding_cp850.csv",
+      "category": "csv_legacy_encodings",
+      "size": 31,
+      "sha256": "30956531e42d54cead2c456c38ff13c598da98baa52f690d39baaab89a30b533",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "cp850",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "encoding_cp850.csv.expected.jsonl",
+      "expected_rows": 1,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 2,
+      "physical_lines": null,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            2
+          ],
+          "count": 1,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [],
+      "overrides": {}
+    },
+    {
+      "path": "encoding_cp858.csv",
+      "category": "csv_legacy_encodings",
+      "size": 29,
+      "sha256": "737bef50fbd39066e65ecff8bd0298d8869684d614214412e625b01f149ef303",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "cp858",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "encoding_cp858.csv.expected.jsonl",
+      "expected_rows": 1,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 2,
+      "physical_lines": null,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            2
+          ],
+          "count": 1,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [],
+      "overrides": {}
+    },
+    {
+      "path": "encoding_cp1250.csv",
+      "category": "csv_legacy_encodings",
+      "size": 32,
+      "sha256": "3e77d0e57f9e66fd125aac01d8ac9f168e5c381844a28a82287f4a3d7573b7b8",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "cp1250",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "encoding_cp1250.csv.expected.jsonl",
+      "expected_rows": 1,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 2,
+      "physical_lines": null,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            2
+          ],
+          "count": 1,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [],
+      "overrides": {}
+    },
+    {
+      "path": "encoding_cp1251.csv",
+      "category": "csv_legacy_encodings",
+      "size": 30,
+      "sha256": "0eb5747b5dcc1f3d4548ffdcab28edd7f4fe04233e028861ea58bb4445f91dde",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "cp1251",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "encoding_cp1251.csv.expected.jsonl",
+      "expected_rows": 1,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 2,
+      "physical_lines": null,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            2
+          ],
+          "count": 1,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [],
+      "overrides": {}
+    },
+    {
+      "path": "encoding_koi8-r.csv",
+      "category": "csv_legacy_encodings",
+      "size": 30,
+      "sha256": "1621399d43cd99db348d63105fa2608ba928c342ca1f4a25b58f8519ecb7c600",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "koi8-r",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "encoding_koi8-r.csv.expected.jsonl",
+      "expected_rows": 1,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 2,
+      "physical_lines": null,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            2
+          ],
+          "count": 1,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [],
+      "overrides": {}
+    },
+    {
+      "path": "encoding_cp1253.csv",
+      "category": "csv_legacy_encodings",
+      "size": 27,
+      "sha256": "eacec2b40513057e581848dd4d31adf4334d1b59eb1dcfdd5aa95a4069893846",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "cp1253",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "encoding_cp1253.csv.expected.jsonl",
+      "expected_rows": 1,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 2,
+      "physical_lines": null,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            2
+          ],
+          "count": 1,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [],
+      "overrides": {}
+    },
+    {
+      "path": "encoding_cp1254.csv",
+      "category": "csv_legacy_encodings",
+      "size": 32,
+      "sha256": "36345451d95f778b1d525d699ed47070b54a11e32fbf4c2e9574db1c7e88f692",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "cp1254",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "encoding_cp1254.csv.expected.jsonl",
+      "expected_rows": 1,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 2,
+      "physical_lines": null,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            2
+          ],
+          "count": 1,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [],
+      "overrides": {}
+    },
+    {
+      "path": "encoding_cp1255.csv",
+      "category": "csv_legacy_encodings",
+      "size": 26,
+      "sha256": "e25e6ae3c0507f68f2c8caf55bf6bdbb8918a21beb673654a905ec9d07c79e98",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "cp1255",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "encoding_cp1255.csv.expected.jsonl",
+      "expected_rows": 1,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 2,
+      "physical_lines": null,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            2
+          ],
+          "count": 1,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [],
+      "overrides": {}
+    },
+    {
+      "path": "encoding_cp1256.csv",
+      "category": "csv_legacy_encodings",
+      "size": 27,
+      "sha256": "7405ee85e38474632a73d38a2d15e681fb2c8c7f95da8cb4700236abad81f99c",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "cp1256",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "encoding_cp1256.csv.expected.jsonl",
+      "expected_rows": 1,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 2,
+      "physical_lines": null,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            2
+          ],
+          "count": 1,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [],
+      "overrides": {}
+    },
+    {
+      "path": "encoding_cp1257.csv",
+      "category": "csv_legacy_encodings",
+      "size": 28,
+      "sha256": "25b2746b203249766287545b90fde3afe68a7734029145b971da9e9ab239ca03",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "cp1257",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "encoding_cp1257.csv.expected.jsonl",
+      "expected_rows": 1,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 2,
+      "physical_lines": null,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            2
+          ],
+          "count": 1,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [],
+      "overrides": {}
+    },
+    {
+      "path": "encoding_cp1258.csv",
+      "category": "csv_legacy_encodings",
+      "size": 27,
+      "sha256": "e40c076a02337ec6f44d08700acb44eddce9efe0cf52f78ade78a01b7bb1d314",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "cp1258",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "encoding_cp1258.csv.expected.jsonl",
+      "expected_rows": 1,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 2,
+      "physical_lines": null,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            2
+          ],
+          "count": 1,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [],
+      "overrides": {}
+    },
+    {
+      "path": "encoding_utf-8-sig.csv",
+      "category": "csv_legacy_encodings",
+      "size": 40,
+      "sha256": "3c91102c68d696b460e0a341cbbe0959d841eaf8027c7f41460889fa92ec7c0c",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "utf-8-sig",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "encoding_utf-8-sig.csv.expected.jsonl",
+      "expected_rows": 1,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 2,
+      "physical_lines": null,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            2
+          ],
+          "count": 1,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [],
+      "overrides": {}
+    },
+    {
+      "path": "encoding_utf-16-le.csv",
+      "category": "csv_legacy_encodings",
+      "size": 60,
+      "sha256": "dc2c789e70f8c0e73500a27fee147dc95d50251106ea8e5b990384a0cdf827fa",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "utf-16-le",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "encoding_utf-16-le.csv.expected.jsonl",
+      "expected_rows": 1,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 2,
+      "physical_lines": null,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            2
+          ],
+          "count": 1,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [],
+      "overrides": {}
+    },
+    {
+      "path": "encoding_utf-16-be.csv",
+      "category": "csv_legacy_encodings",
+      "size": 60,
+      "sha256": "8922dbba939b328a51c9ee8cdb57af82e24263666abc21d8e098237f72ac1bf6",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "utf-16-be",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "encoding_utf-16-be.csv.expected.jsonl",
+      "expected_rows": 1,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 2,
+      "physical_lines": null,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            2
+          ],
+          "count": 1,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [],
+      "overrides": {}
+    },
+    {
+      "path": "encoding_utf-32-le.csv",
+      "category": "csv_legacy_encodings",
+      "size": 116,
+      "sha256": "c42f5aa419f286c65daec337d6481d37e50301e43ef7738d8b8eb9d230579910",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "utf-32-le",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "encoding_utf-32-le.csv.expected.jsonl",
+      "expected_rows": 1,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 2,
+      "physical_lines": null,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            2
+          ],
+          "count": 1,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [],
+      "overrides": {}
+    },
+    {
+      "path": "encoding_utf-32-be.csv",
+      "category": "csv_legacy_encodings",
+      "size": 116,
+      "sha256": "bda7b0fca64bb961f92d62532d9d07c4c134e5cc22352ac7e0773aea2ce5cccc",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "utf-32-be",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "encoding_utf-32-be.csv.expected.jsonl",
+      "expected_rows": 1,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 2,
+      "physical_lines": null,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            2
+          ],
+          "count": 1,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [],
+      "overrides": {}
+    },
+    {
+      "path": "encoding_shift_jis.csv",
+      "category": "csv_legacy_encodings",
+      "size": 33,
+      "sha256": "58fd814ca7395f4e1980b84c1fb83227e051a65ac21c4861d93124929b2b15d0",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "shift_jis",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "encoding_shift_jis.csv.expected.jsonl",
+      "expected_rows": 1,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 2,
+      "physical_lines": null,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            2
+          ],
+          "count": 1,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [],
+      "overrides": {}
+    },
+    {
+      "path": "encoding_cp932.csv",
+      "category": "csv_legacy_encodings",
+      "size": 29,
+      "sha256": "eab3edfdca40a6ccd50f4f055eb0856d4fe38a0a7cf9ea1c619d4f7092d06cd3",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "cp932",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "encoding_cp932.csv.expected.jsonl",
+      "expected_rows": 1,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 2,
+      "physical_lines": null,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            2
+          ],
+          "count": 1,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [],
+      "overrides": {}
+    },
+    {
+      "path": "encoding_euc_jp.csv",
+      "category": "csv_legacy_encodings",
+      "size": 33,
+      "sha256": "2de5e47afc7e55da0c0637f9ebeb3cdb033778f229529af4ebcab4b57e078fc5",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "euc_jp",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "encoding_euc_jp.csv.expected.jsonl",
+      "expected_rows": 1,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 2,
+      "physical_lines": null,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            2
+          ],
+          "count": 1,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [],
+      "overrides": {}
+    },
+    {
+      "path": "encoding_gb18030.csv",
+      "category": "csv_legacy_encodings",
+      "size": 31,
+      "sha256": "68e8a1ec87f42d543e310fba10f4dd4ebc36d82f3e69d623448fb3d12b9c4422",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "gb18030",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "encoding_gb18030.csv.expected.jsonl",
+      "expected_rows": 1,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 2,
+      "physical_lines": null,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            2
+          ],
+          "count": 1,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [],
+      "overrides": {}
+    },
+    {
+      "path": "encoding_gbk.csv",
+      "category": "csv_legacy_encodings",
+      "size": 31,
+      "sha256": "7038a3e9bfa23a81648e716639f28c1c5f95750f0051490bc445a5233cb44b4b",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "gbk",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "encoding_gbk.csv.expected.jsonl",
+      "expected_rows": 1,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 2,
+      "physical_lines": null,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            2
+          ],
+          "count": 1,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [],
+      "overrides": {}
+    },
+    {
+      "path": "encoding_big5.csv",
+      "category": "csv_legacy_encodings",
+      "size": 31,
+      "sha256": "5acc5d7325842c2c18ace5d5ad912984539bca6e28947e6ef2db258add7c2194",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "big5",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "encoding_big5.csv.expected.jsonl",
+      "expected_rows": 1,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 2,
+      "physical_lines": null,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            2
+          ],
+          "count": 1,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [],
+      "overrides": {}
+    },
+    {
+      "path": "encoding_euc_kr.csv",
+      "category": "csv_legacy_encodings",
+      "size": 31,
+      "sha256": "db9d6ada9006ca7934a559abc854bf37463190d8eef1828f6ebae11c122d857f",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "euc_kr",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "encoding_euc_kr.csv.expected.jsonl",
+      "expected_rows": 1,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 2,
+      "physical_lines": null,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            2
+          ],
+          "count": 1,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [],
+      "overrides": {}
+    },
+    {
+      "path": "encoding_cp949.csv",
+      "category": "csv_legacy_encodings",
+      "size": 31,
+      "sha256": "db9d6ada9006ca7934a559abc854bf37463190d8eef1828f6ebae11c122d857f",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "cp949",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "encoding_cp949.csv.expected.jsonl",
+      "expected_rows": 1,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 2,
+      "physical_lines": null,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            2
+          ],
+          "count": 1,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [],
+      "overrides": {}
+    },
+    {
+      "path": "ebcdic_cp037_lf.csv",
+      "category": "mainframe_ebcdic",
+      "size": 37,
+      "sha256": "b097dcac030ed954cd5e3a1f2e8a1a32426147df2e16834a727fec7c3355ae4b",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "cp037",
+      "delimiter": ";",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "ebcdic_cp037_lf.csv.expected.jsonl",
+      "expected_rows": 1,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 2,
+      "physical_lines": null,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            2
+          ],
+          "count": 1,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [
+        "Synthetic DISPLAY text export, not a COBOL binary record. Original code page and padding are retained."
+      ],
+      "overrides": {
+        "nel_is_newline": false
+      }
+    },
+    {
+      "path": "ebcdic_cp037_crlf.csv",
+      "category": "mainframe_ebcdic",
+      "size": 39,
+      "sha256": "0ceafa6ec02135cae14ec8e36d4ae9e29cafbb7a32b24e54c4dfdd415b7df6ff",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "cp037",
+      "delimiter": ";",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "ebcdic_cp037_crlf.csv.expected.jsonl",
+      "expected_rows": 1,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 2,
+      "physical_lines": null,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            2
+          ],
+          "count": 1,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [
+        "Synthetic DISPLAY text export, not a COBOL binary record. Original code page and padding are retained."
+      ],
+      "overrides": {
+        "nel_is_newline": false
+      }
+    },
+    {
+      "path": "ebcdic_cp037_nel.csv",
+      "category": "mainframe_ebcdic",
+      "size": 37,
+      "sha256": "3debd73abad6595e2c14dad479b518f423f230afb36b2225f3097e914540d723",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "cp037",
+      "delimiter": ";",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "ebcdic_cp037_nel.csv.expected.jsonl",
+      "expected_rows": 1,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 2,
+      "physical_lines": null,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            2
+          ],
+          "count": 1,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [
+        "Synthetic DISPLAY text export, not a COBOL binary record. Original code page and padding are retained."
+      ],
+      "overrides": {
+        "nel_is_newline": true
+      }
+    },
+    {
+      "path": "ebcdic_cp500_lf.csv",
+      "category": "mainframe_ebcdic",
+      "size": 37,
+      "sha256": "e3314321a5667db5462bd24f8dfaaeac8c35c00521e58c08b95bf588783038d7",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "cp500",
+      "delimiter": ";",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "ebcdic_cp500_lf.csv.expected.jsonl",
+      "expected_rows": 1,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 2,
+      "physical_lines": null,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            2
+          ],
+          "count": 1,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [
+        "Synthetic DISPLAY text export, not a COBOL binary record. Original code page and padding are retained."
+      ],
+      "overrides": {
+        "nel_is_newline": false
+      }
+    },
+    {
+      "path": "ebcdic_cp500_crlf.csv",
+      "category": "mainframe_ebcdic",
+      "size": 39,
+      "sha256": "6a80d02c65ea1355ff930cc6108732d79e8e1f31dbfdc761a8d5822ff6111a87",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "cp500",
+      "delimiter": ";",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "ebcdic_cp500_crlf.csv.expected.jsonl",
+      "expected_rows": 1,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 2,
+      "physical_lines": null,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            2
+          ],
+          "count": 1,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [
+        "Synthetic DISPLAY text export, not a COBOL binary record. Original code page and padding are retained."
+      ],
+      "overrides": {
+        "nel_is_newline": false
+      }
+    },
+    {
+      "path": "ebcdic_cp500_nel.csv",
+      "category": "mainframe_ebcdic",
+      "size": 37,
+      "sha256": "4b96ea98af9fd7a83febbc1ca425bf045273cc72be4f77179c086e405b9222b3",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "cp500",
+      "delimiter": ";",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "ebcdic_cp500_nel.csv.expected.jsonl",
+      "expected_rows": 1,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 2,
+      "physical_lines": null,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            2
+          ],
+          "count": 1,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [
+        "Synthetic DISPLAY text export, not a COBOL binary record. Original code page and padding are retained."
+      ],
+      "overrides": {
+        "nel_is_newline": true
+      }
+    },
+    {
+      "path": "ebcdic_cp1140_lf.csv",
+      "category": "mainframe_ebcdic",
+      "size": 37,
+      "sha256": "b097dcac030ed954cd5e3a1f2e8a1a32426147df2e16834a727fec7c3355ae4b",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "cp1140",
+      "delimiter": ";",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "ebcdic_cp1140_lf.csv.expected.jsonl",
+      "expected_rows": 1,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 2,
+      "physical_lines": null,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            2
+          ],
+          "count": 1,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [
+        "Synthetic DISPLAY text export, not a COBOL binary record. Original code page and padding are retained."
+      ],
+      "overrides": {
+        "nel_is_newline": false
+      }
+    },
+    {
+      "path": "ebcdic_cp1140_crlf.csv",
+      "category": "mainframe_ebcdic",
+      "size": 39,
+      "sha256": "0ceafa6ec02135cae14ec8e36d4ae9e29cafbb7a32b24e54c4dfdd415b7df6ff",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "cp1140",
+      "delimiter": ";",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "ebcdic_cp1140_crlf.csv.expected.jsonl",
+      "expected_rows": 1,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 2,
+      "physical_lines": null,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            2
+          ],
+          "count": 1,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [
+        "Synthetic DISPLAY text export, not a COBOL binary record. Original code page and padding are retained."
+      ],
+      "overrides": {
+        "nel_is_newline": false
+      }
+    },
+    {
+      "path": "ebcdic_cp1140_nel.csv",
+      "category": "mainframe_ebcdic",
+      "size": 37,
+      "sha256": "3debd73abad6595e2c14dad479b518f423f230afb36b2225f3097e914540d723",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "cp1140",
+      "delimiter": ";",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "ebcdic_cp1140_nel.csv.expected.jsonl",
+      "expected_rows": 1,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 2,
+      "physical_lines": null,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            2
+          ],
+          "count": 1,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [
+        "Synthetic DISPLAY text export, not a COBOL binary record. Original code page and padding are retained."
+      ],
+      "overrides": {
+        "nel_is_newline": true
+      }
+    },
+    {
+      "path": "ebcdic_multiline_nel.csv",
+      "category": "mainframe_ebcdic",
+      "size": 42,
+      "sha256": "bbfe7df4968d9a226b67363e1920f7b56af01674c923212bcbb0f980cc43ab4f",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "cp037",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "ebcdic_multiline_nel.csv.expected.jsonl",
+      "expected_rows": 1,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 2,
+      "physical_lines": null,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            2
+          ],
+          "count": 1,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [],
+      "overrides": {
+        "nel_is_newline": true
+      }
+    },
+    {
+      "path": "ebcdic_display_numbers.csv",
+      "category": "mainframe_ebcdic",
+      "size": 43,
+      "sha256": "1ae03d5508435dd715bfab1dd108bbd1e826844c35742fdcc0307711e1785b95",
+      "adapter": "delimited",
+      "ordinal_basis": "source logical records including declared header",
+      "encoding": "cp037",
+      "delimiter": ",",
+      "quotechar": "\"",
+      "header": "present",
+      "expected_path": "ebcdic_display_numbers.csv.expected.jsonl",
+      "expected_rows": 1,
+      "expected_outcome": "parsed",
+      "rejected_ordinals": [],
+      "logical_records": 2,
+      "physical_lines": null,
+      "sql_schema": [
+        {
+          "source_ordinal": 1,
+          "target_name": "fixture_c1",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 2,
+          "target_name": "fixture_c2",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        },
+        {
+          "source_ordinal": 3,
+          "target_name": "fixture_c3",
+          "target_type": "nvarchar(max)",
+          "nullable": true
+        }
+      ],
+      "expected_record_outcomes": [
+        {
+          "ordinal": 1,
+          "outcome": "header",
+          "reason": "declared first header"
+        },
+        {
+          "ordinal_range": [
+            2,
+            2
+          ],
+          "count": 1,
+          "outcome": "accepted",
+          "reason": "authored exact ordered values in streamed expected_path"
+        }
+      ],
+      "expected_reason_codes": [],
+      "notes": [
+        "DISPLAY decimal can use an explicit decimal column rule. Overpunch remains text; no implicit sign interpretation."
+      ],
+      "overrides": {}
+    }
+  ],
+  "sidecars": []
+}

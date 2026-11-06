@@ -1,0 +1,14 @@
+# Run from project root; no supplied SQL column types.
+[source]
+root = "examples"
+path = "examples/incomplete-header.csv"
+include = ["incomplete-header.csv"]
+[parsing]
+encoding = "utf-8"
+delimiter = ","
+header = "present"
+column_names = ["id", "label", "amount"]
+[preservation]
+work_directory = ".integration/incomplete-header-example-work"
+[parallel]
+enabled = false

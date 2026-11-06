@@ -1,0 +1,7 @@
+# Source fixtures and their expected-byte manifests must survive checkout unchanged.
+examples/messy-exports/** -text
+examples/incomplete-header.csv -text
+
+examples/token-delimited.txt -text
+
+examples/directory-samples/** -text

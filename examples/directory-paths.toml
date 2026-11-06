@@ -1,0 +1,30 @@
+# One-off directory preset. Edit paths/server/databases before use; no password here.
+[destination]
+server = "SQLHOST,1433"
+database = "LandingDB"
+control_database = "ControlDB"
+authentication = "sql"
+create_databases = false
+create_schemas = true
+create_tables = true
+[source]
+root = 'D:\Exports'
+# path omitted: select the whole root
+include = ["**/*.csv"]
+recursive = true
+[mapping]
+database_strategy = "single"
+table_strategy = "per_file"
+name_collision = "path_error"
+directory_merge_schema = "strict"
+root_table = "root_records"
+[load]
+mode = "create_only"
+engine = "odbc"
+[parsing]
+encoding = "utf-8"
+delimiter = ","
+header = "present"
+quotechar = '"'
+[preservation]
+work_directory = 'D:\ingest-work'
