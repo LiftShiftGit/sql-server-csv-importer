@@ -62,4 +62,3 @@ If recovery still fails, preserve the evidence and involve an experienced engine
 Changed exports, incomplete captures and parsing corrections need the specific
 [operator recovery steps](operator-guide.md) or [share recovery guide](smb-outage-recovery.md).
 Never edit retained source captures to make recovery pass.
-

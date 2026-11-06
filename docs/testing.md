@@ -127,3 +127,18 @@ scale. Smaller regression fixtures cover the supported parsing/configuration beh
 Production validation still needs the intended account, TLS settings, SQL memory/log/
 tempdb capacity, storage, network share and representative exports. Raw machine-specific
 reports, credentials and test environments are excluded from public source.
+
+
+## Release review fixes
+
+The Windows path and provider-diagnostic fixes were checked with 1,812 passing local
+cases and 1,191 subtests; one optional UNC-share test was skipped because its test root
+was not configured. Thirty-one new local cases cover device-namespace separator aliases,
+quoted/injected provider codes, real diagnostic suffixes and the empty-versus-partial
+capture recovery distinction. Thirteen adversarial cases failed before the initial fixes.
+
+Eleven live SQL Server 2022 / ODBC Driver 18 cases passed, including eight conversion
+errors containing code-like source text and apostrophes, plus TLS rejection, failed login
+and limited-account permission/database-access diagnostics. Conversion failures do not
+become retryable deadlocks or database-access errors. Full multi-GB and SMB acceptance
+runs above are prior evidence; they were not repeated for these release-review fixes.

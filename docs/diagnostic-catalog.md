@@ -3,9 +3,10 @@
 Start with the retained run ID. These commands read local evidence; `reconcile` also checks SQL Server.
 
 ```powershell
-.\.venv\Scripts\python.exe -m db_ingest --config ingest.toml status --run-id RUN_ID
-.\.venv\Scripts\python.exe -m db_ingest --config ingest.toml show-errors --run-id RUN_ID
-.\.venv\Scripts\python.exe -m db_ingest --config ingest.toml reconcile --run-id RUN_ID --password-prompt
+$IngestPython = (Resolve-Path '.\.venv-run\Scripts\python.exe').Path
+& $IngestPython -I -m db_ingest --config ingest.toml status --run-id RUN_ID
+& $IngestPython -I -m db_ingest --config ingest.toml show-errors --run-id RUN_ID
+& $IngestPython -I -m db_ingest --config ingest.toml reconcile --run-id RUN_ID --password-prompt
 ```
 
 An error contains a stable code, observed message and context. Provider errors additionally retain SQLSTATE, native code when supplied, operation and remediation. A timeout does not establish whether a publication committed. Keep the work directory, captures and journal together.
@@ -17,7 +18,8 @@ An error contains a stable code, observed message and context. Provider errors a
 | `TLS` | Check the certificate chain, validity and server name. Connection failures do not relax TLS settings. |
 | `DATABASE_ACCESS` (4060), `PERMISSION` (229/262) | Check database visibility/state and the specific permission. An inaccessible database is not proof of absence. |
 | `TIMEOUT`, `DATABASE` | Inspect the supplied endpoint/provider diagnostic. Resume resolves receipts before any replay. |
-| `SOURCE_ACCESS`, `SOURCE_CHANGED`, `CAPTURE_IO` | Stabilize or restore access to the source. Incomplete captures remain retained; resume allocates a new capture attempt under the same intent. |
+| `SOURCE_ACCESS`, `SOURCE_CHANGED`, `CAPTURE_IO` | Restore source access, then inspect retained capture evidence. Only an empty failed capture can be automatically recaptured under the same intent. A verified complete snapshot can be reused; nonempty unverified captures remain blocked as described below. |
+| `CAPTURE_RETRY_UNVERIFIED` | Captured bytes exist without a verified complete snapshot. Restoring access or even the original export does not permit automatic recapture. Preserve the run and captures for review; do not delete evidence or create a new intent to bypass the block. See [share recovery](smb-outage-recovery.md). |
 | `DISK_CAPACITY`, `STORAGE_CAPACITY` (1105), `LOG_CAPACITY` (9002) | Repair the named storage condition. Do not delete the only capture. SQL log/filegroup changes belong to the DBA. |
 | `RESOURCE_BUDGET`, `RESOURCE_ADMISSION`, `QUEUE_BUDGET` | Reduce workers or batch rows/bytes and inspect the reported observation. Oversized individual records follow explicit preservation/quarantine limits. |
 | `*_DECISION_REQUIRED`, `FILE_DECISION_REQUIRED` | Review the column/dialect evidence. Correct interpretation through a linked `reimport`; an existing intent cannot silently change source meaning. |

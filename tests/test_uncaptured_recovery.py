@@ -26,3 +26,26 @@ def test_interrupted_inventory_with_saved_good_file_not_clean(tmp_path):
     j=Journal(tmp_path);j.create_run("interrupted",redact(c));j.close()
     result=execute(c,"interrupted")
     assert result["exit_code"]==2 and result["state"]=="NEEDS_DECISION"
+
+
+def test_empty_open_failure_recaptures_under_same_intent(tmp_path,monkeypatch):
+    source=tmp_path/"orders.csv";raw=b"id,label\n1,original\n";source.write_bytes(raw)
+    c=load_config(overrides={"parallel.enabled":False},environ={})
+    c["source"].update(root=str(tmp_path),path=str(source))
+    c["parsing"].update(header="present",delimiter=",",encoding="utf-8")
+    c["preservation"].update(work_directory=str(tmp_path/"work"),minimum_free_disk_bytes=1)
+    reader=capture._stable_reader
+    def unavailable(*args,**kwargs):raise OSError("synthetic source opening failure")
+    monkeypatch.setattr(capture,"_stable_reader",unavailable)
+    report=prepare(c)
+    assert report["exit_code"]==4
+    from contextlib import closing
+    with closing(Journal(c["preservation"]["work_directory"])) as journal:
+        old=dict(journal.db.execute("SELECT * FROM selections").fetchone())
+    monkeypatch.setattr(capture,"_stable_reader",reader)
+    from db_ingest.pipeline import recover_plan
+    resumed=recover_plan(c,report["run_id"])
+    assert resumed["exit_code"]==0
+    assert resumed["files"][0]["intent_id"]==old["intent_id"]
+    from pathlib import Path
+    assert Path(resumed["files"][0]["artifact"]["path"]).read_bytes()==raw

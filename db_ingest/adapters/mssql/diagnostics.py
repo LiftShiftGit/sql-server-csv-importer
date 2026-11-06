@@ -31,16 +31,33 @@ def sanitize(text, secrets=()):
         result = result.replace(secret, "<redacted>")
     return result
 
+def _native_codes(args):
+    """Read diagnostic suffixes, excluding quoted values and truncated quoted tails."""
+    codes = []
+    for arg in args:
+        message = str(arg)
+        # Providers may echo apostrophes literally (it's) or doubled (it''s).
+        quoted = r"'(?:(?:'')|(?:(?<=\w)'(?=\w))|[^'])*(?:'|$)|\"(?:(?:\"\")|[^\"])*(?:\"|$)"
+        outside_quotes = re.sub(quoted, lambda m: " " * len(m.group()), message)
+        for match in re.finditer(
+                r"\((-?\d+)\)(?:\s+\(SQL[A-Za-z0-9_]+\))?\s*(?=;|$)", message):
+            if outside_quotes[match.start():match.start()+1] == "(":
+                codes.append(int(match.group(1)))
+    return codes
+
+
 def provider_error(exc, operation, secrets=(), exit_code=4):
     args = getattr(exc, "args", ())
     raw = sanitize(" | ".join(str(x) for x in args) or str(exc), secrets)
     state = args[0] if args and re.fullmatch(r"[A-Z0-9]{5}", str(args[0])) else None
-    nums = [int(x) for x in re.findall(r"\((-?\d+)\)", raw)]
+    nums = _native_codes(args)
     code, advice = "DATABASE", "Inspect the exact provider diagnostic, server reachability and permissions; TLS policy is unchanged."
     # ODBC can report the accompanying generic 18456 before the specific 4060.
     # An explicit inaccessible-database diagnostic is more informative than generic
     # login failure; it does not prove the database is absent.
-    native = 4060 if 4060 in nums else next((n for n in nums if n in NATIVE), None)
+    native = next((n for n in reversed(nums) if n in NATIVE), None)
+    if native == 18456 and 4060 in nums and state == "28000":
+        native = 4060
     if native is not None:
         code, advice = NATIVE[native]
     elif "certificate" in raw.lower() or "ssl provider" in raw.lower():

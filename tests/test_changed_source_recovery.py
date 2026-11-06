@@ -54,3 +54,16 @@ def test_complete_snapshot_ignores_later_source_replacement(case):
     source.write_bytes(b'id,payload\n002,replacement\n')
     p=cli('resume','--run-id',old['run_id'],'--plan-only');assert p.returncode==0,(p.stdout,p.stderr)
     item=json.loads(p.stdout)['files'][0];assert item['intent_id']==old['intent_id'];assert Path(item['artifact']['path']).read_bytes()==raw
+
+
+def test_restored_original_export_still_blocks_partial_recapture(case):
+    source,raw,work,cli=case
+    assert cli('plan',fault='CAPTURE_FIRST_BLOCK_DURABLE').returncode==86
+    old=selection(work)
+    partial=work/'captures'/old['file_id']/'source.partial'
+    before=partial.read_bytes()
+    source.write_bytes(raw)
+    result=cli('resume','--run-id',old['run_id'],'--plan-only')
+    assert result.returncode==5 and 'CAPTURE_RETRY_UNVERIFIED' in result.stdout
+    assert selection(work)['intent_id']==old['intent_id']
+    assert partial.read_bytes()==before

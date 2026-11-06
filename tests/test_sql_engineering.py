@@ -116,7 +116,7 @@ class ConnectionPolicyTests(unittest.TestCase):
         self.assertNotIn("PWD=",result)
     def test_diagnostics_redact_and_do_not_invent_reason(self):
         secret="p;}雪$()`"
-        error=provider_error(Exception("28000","[SQL Server]Login failed (18456) "+secret),"connect",(secret,))
+        error=provider_error(Exception("28000","[SQL Server]Login failed for user '"+secret+"' (18456) (SQLDriverConnect)"),"connect",(secret,))
         self.assertEqual(error.code,"AUTHENTICATION");self.assertNotIn(secret,str(error));self.assertNotIn(secret,str(error.context))
         error=provider_error(Exception("08001","Unspecified provider failure"),"connect")
         self.assertEqual(error.code,"DATABASE");self.assertNotIn("firewall",str(error).lower())

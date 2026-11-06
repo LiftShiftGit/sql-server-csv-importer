@@ -10,7 +10,7 @@ def validate_path_spelling(value, field):
     p = PureWindowsPath(value)
     if bool(p.drive) != bool(p.root):
         raise IngestError("CONFIG_PATH", field + " must be a full drive/UNC path or a relative path; drive-relative and current-drive-rooted paths are ambiguous")
-    if str(value).startswith("\\\\.\\"):
+    if str(p).startswith("\\\\.\\"):
         raise IngestError("CONFIG_PATH", field + " must be a filesystem path, not a Windows device path")
 
 
