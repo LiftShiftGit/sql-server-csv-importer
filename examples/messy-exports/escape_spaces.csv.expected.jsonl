@@ -1,0 +1,3 @@
+{"ordinal":2,"values":[{"type":"text","value":"001"},{"type":"text","value":"  spaced  "}]}
+{"ordinal":3,"values":[{"type":"text","value":"002"},{"type":"text","value":" \"literal quotes\""}]}
+{"ordinal":4,"values":[{"type":"text","value":"003"},{"type":"text","value":"a\"b"}]}

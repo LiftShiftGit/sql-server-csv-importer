@@ -1,0 +1,19 @@
+# Run from project root. No supplied SQL types.
+[source]
+root = "examples"
+path = "examples/token-delimited.txt"
+include = ["token-delimited.txt"]
+format = "delimited"
+[parsing]
+encoding = "utf-8"
+header = "present"
+delimiter = "||"
+quotechar = "@@"
+escapechar = "!!"
+doublequote = true
+record_terminator = "<END>"
+allow_multiline_fields = true
+[preservation]
+work_directory = ".integration/token-delimited-example-work"
+[parallel]
+enabled = false
