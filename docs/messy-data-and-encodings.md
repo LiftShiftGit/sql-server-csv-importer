@@ -7,11 +7,13 @@ ordered values in `.expected.jsonl`, and expected reject/unresolved reasons. A n
 fixture passing means the importer retained and correctly refused it; it does not mean
 malformed bytes were silently repaired.
 
-Run the supplied parsing-only configurations from the project root:
+After the README installation, run these parsing-only examples from the project root.
+They do not publish to SQL; do not use these fixture configurations for a production import:
 
 ```powershell
-.\.venv\Scripts\python.exe -m db_ingest --config examples/incomplete-header.toml plan
-.\.venv\Scripts\python.exe -m db_ingest --config examples/messy-exports/ingest.examples.toml plan
+$IngestPython = (Resolve-Path '.\.venv-run\Scripts\python.exe').Path
+& $IngestPython -I -m db_ingest --config examples/incomplete-header.toml plan
+& $IngestPython -I -m db_ingest --config examples/messy-exports/ingest.examples.toml plan
 ```
 
 The first profiles three inferred columns from a two-name header. The second intentionally
@@ -153,7 +155,7 @@ than materialized without a bound. Keep the durable work directory for capture a
 Regenerate the smaller examples anywhere new:
 
 ```powershell
-.\.venv\Scripts\python.exe -m db_ingest create-test-files --output D:\TestExports\messy --types csv_escaping,csv_dirty,csv_legacy_encodings,mainframe_ebcdic
+& $IngestPython -I -m db_ingest create-test-files --output D:\TestExports\messy --types csv_escaping,csv_dirty,csv_legacy_encodings,mainframe_ebcdic
 ```
 
 Each manifest's `overrides`, encoding, delimiter and header settings are authoritative.

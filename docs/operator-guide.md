@@ -1,7 +1,8 @@
 # db_ingest - Windows operator guide
 
 Import delimited exports into SQL Server while retaining originals, rejected rows and
-publication receipts. Start with the sample below, then plan a representative export.
+publication receipts. **For a one-off directory import, start with the [README](../README.md).**
+For an interrupted import, use the [recovery checklist](recovery.md).
 This walkthrough uses importer-owned landing tables and append mode. Existing business
 tables, replacement and lossy conversions are separate advanced workflows.
 

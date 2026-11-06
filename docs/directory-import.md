@@ -1,14 +1,17 @@
 # Import a directory once
 
-Send the offline release ZIP and a reviewed copy of one preset configuration. IT supplies
-Python 3.13 x64 and ODBC Driver 18 separately, as in the README. No extra Python libraries
-are required for these modes. Choose one preset; do not run all three on the same exports.
+[Back to the quick start](../README.md) · [All settings](configuration-reference.md)
+
+Start with `directory-paths.toml` unless you need one of the alternatives below. Install
+the tool using the [README](../README.md#install-from-source); IT supplies Python 3.13 x64
+and ODBC Driver 18 separately. These modes need no optional Python dependencies.
+Choose one preset; do not run all three on the same exports.
 
 | Preset file in examples/ | Meaning | Example table |
 | --- | --- | --- |
-| directory-filenames.toml | One table per CSV, filenames must be unique across the selection | north/orders.csv -> orders |
-| directory-paths.toml | One table per CSV, folders distinguish names | north/orders.csv -> north_orders |
-| directory-merge.toml | Combine the immediate CSV files in each folder | north/part1.csv + north/part2.csv -> north |
+| [directory-filenames.toml](../examples/directory-filenames.toml) | One table per CSV, filenames must be unique across the selection | north/orders.csv -> orders |
+| [directory-paths.toml](../examples/directory-paths.toml) | One table per CSV, folders distinguish names | north/orders.csv -> north_orders |
+| [directory-merge.toml](../examples/directory-merge.toml) | Combine the immediate CSV files in each folder | north/part1.csv + north/part2.csv -> north |
 
 For a rehearsal, `examples/directory-samples/flat` contains unique filenames and
 `examples/directory-samples/tree` demonstrates duplicate basenames, nested folders and
@@ -24,7 +27,7 @@ one-off preset explicitly. Do not change naming or load mode while resuming an o
 
 ## Configure one preset
 
-After the README's offline install, copy your selected preset to a new config filename:
+After the README's installation, copy your selected preset to a new config filename:
 
 ```powershell
 if (Test-Path '.\ingest-directory.toml') { throw 'Stop: configuration already exists.' }

@@ -1,8 +1,26 @@
-# db_ingest
+# SQL Server CSV Importer
 
-A Windows command-line tool for importing CSV and other delimited exports into SQL Server.
-It preserves original bytes, validates inferred or configured types, records rejected data,
-and uses publication receipts to recover interrupted imports without blindly replaying rows.
+Import a folder of CSV files into SQL Server on Windows, with inferred column types,
+bounded bulk loading, audit logs and recovery for interrupted imports.
+CSV and other delimited text are the main workflow; XML requires explicit mappings and
+an optional dependency. The Python package and command remain `db_ingest`.
+
+**[Start a one-off import](#import-a-directory-once)** ·
+**[Choose an example](docs/directory-import.md)** ·
+**[Every setting and accepted value](docs/configuration-reference.md)** ·
+**[Troubleshoot and recover](docs/recovery.md)**
+
+With the recommended preset:
+
+```text
+Exports/orders.csv        -> dbo.orders
+Exports/north/orders.csv  -> dbo.north_orders
+Exports/south/orders.csv  -> dbo.south_orders
+```
+
+Existing tables and naming collisions stop for review. Original bytes and rejected
+records remain available for investigation. See [verification results and limits](docs/testing.md)
+for the tested multi-GB and recovery scenarios.
 
 ## Requirements
 
@@ -17,24 +35,9 @@ alongside it if that command is unavailable. Python and the ODBC driver are inst
 CSV runtime has one Python dependency:
 `pyodbc`. XML support optionally adds `defusedxml`. Native bcp is optional.
 
-## SQL Server capacity
-
-The importer and SQL Server have separate memory needs. Small batch sizes limit data
-sent at once; they do not cap SQL Server memory, transaction-log growth or tempdb use.
-Staging, publication and verification still process the full file.
-
-Our 2.15 GB synthetic-file test hit a SQL resource failure with a 2 GiB SQL allocation.
-The original import recovered successfully with a 6 GiB SQL allocation inside an 8 GiB
-container, without duplicate rows. These are observed test settings, **not a universal
-minimum**; the exact server failure cause was not isolated. See [test results](docs/testing.md).
-
-Before a large import, have your DBA confirm available SQL memory, database/log/tempdb
-space and operating-system headroom for the expected file size, row width and concurrent
-workload. Have IT provide the Python/ODBC installers, SQL endpoint, authentication and
-TLS requirements. The directory presets expect the DBA to create `LandingDB` and
-`ControlDB` (or your chosen names) and grant the [required permissions](docs/sql-support.md).
-Start with a small representative export, then validate a full-size export before
-scheduling unattended imports. A successful connection check alone does not prove capacity.
+SQL Server needs its own memory and database/log/tempdb capacity; importer batch limits
+do not cap server resource use. Ask your DBA to size the workload before large imports.
+See [tested SQL capacity and recovery steps](docs/recovery.md).
 
 ## Install from source
 
@@ -51,21 +54,46 @@ if ($LASTEXITCODE -ne 0) { throw 'Installation failed.' }
 Use a fresh environment for a new release; do not update an environment used by an active
 import. Source installation needs package-index access. For disconnected machines, use a
 maintainer-provided offline bundle and its packaged README; native installers remain separate.
-See the [full setup and operator guide](docs/operator-guide.md) for prerequisites and recovery.
+Continue below for one-off imports. The [operator guide](docs/operator-guide.md) covers
+expanded setup and recurring-feed workflows; its general sample uses append mode.
 
 ## Import a directory once
 
-Choose one configuration from `examples/`:
+**Start with `examples/directory-paths.toml` for a one-time directory import.**
+The commands below copy this preset to `ingest.toml` and always use it explicitly.
 
-| Configuration | Behavior | Example |
+| Your goal | Configuration to copy | Table names |
 | --- | --- | --- |
-| `directory-filenames.toml` | One table per CSV; duplicate basenames stop | orders.csv â†’ orders |
-| `directory-paths.toml` | Folders distinguish tables using one underscore | north/orders.csv â†’ north_orders |
-| `directory-merge.toml` | Merge immediate CSV files in each folder | north/part1.csv + north/part2.csv â†’ north |
+| One table per CSV, with folders distinguishing names (recommended) | `examples/directory-paths.toml` | `north/orders.csv` becomes `north_orders` |
+| One table per CSV, using only its filename | `examples/directory-filenames.toml` | `orders.csv` becomes `orders`; duplicate names stop |
+| Combine the immediate CSV files in each folder | `examples/directory-merge.toml` | `north/part1.csv` + `north/part2.csv` become `north` |
 
-These presets use `create_only`: existing tables are refused, while recovery of the original
-run remains supported. The general `ingest.example.toml` uses append mode for recurring feeds.
-Collision checks never silently merge unrelated sources. Nested folders stay separate.
+**All three directory presets use `load.mode = "create_only"`.** They refuse existing
+target tables; they do not append to or replace them. Recovery of the original run is
+allowed. Naming collisions stop for review; nested folders stay separate.
+
+**Do not use `ingest.example.toml` for this one-off workflow.** It uses `append` for
+recurring feeds. The built-in load mode is also `append`, so keep the preset's explicit
+`mode = "create_only"` line. Append can add new imports to an existing compatible table;
+it does not deduplicate arbitrary source rows.
+
+### What the recommended preset does
+
+| Setting | Starting behavior |
+| --- | --- |
+| File selection | All `.csv` files under `source.root`, including subfolders; omitted/empty `path` uses that root |
+| CSV format | UTF-8, comma separator, double-quote text qualifier (`"`), header row present; CR/LF/CRLF row endings detected automatically |
+| Database setup | Uses your existing landing/control databases; creates missing schemas and tables when permitted |
+| Loading | ODBC; up to two file workers; batches capped at 5,000 rows or 8 MiB, whichever comes first |
+| Types and verification | Full-file type inference and full verification |
+| Bad data | Malformed rows are quarantined; unknown row boundaries block the affected import; review all rejects |
+| Recovery | Original captures and journals retained indefinitely in your local work directory |
+
+These are the **recommended preset's effective settings**, including inherited defaults.
+The general example instead enables format detection, database creation and automatic
+loader selection, and uses filename-only naming and append mode.
+For different exports, edit the parsing settings using the
+[configuration reference](docs/configuration-reference.md); ambiguous detection requires review.
 
 ```powershell
 if (Test-Path '.\ingest.toml') { throw 'Keep the existing configuration; choose another filename.' }
@@ -73,7 +101,9 @@ Copy-Item '.\examples\directory-paths.toml' '.\ingest.toml' -ErrorAction Stop
 notepad '.\ingest.toml'
 ```
 
-Set the SQL server, landing/control databases, source root and local work directory. Confirm
+Set the SQL server, existing landing/control database names, source root and local work
+directory. These presets do not create databases; ask your DBA to create them and grant
+the [required permissions](docs/sql-support.md). Confirm
 the header, encoding, delimiter and quote settings match your exports. Do not store passwords
 in the config. The control database uses the same server and credentials as the landing database.
 Replace `loader` in the commands below with your SQL login; passwords are prompted securely.
@@ -90,7 +120,9 @@ $RunId = 'PASTE_RUN_ID_FROM_PLAN'
 if ($LASTEXITCODE -ne 0) { throw 'Mapping export failed; choose a new output filename if it exists.' }
 ```
 
-Review the mapping CSV, inferred types, row counts and rejects. Then load the saved run
+Before loading, confirm the plan reports `create_only`. If it reports `append` or `replace`,
+stop and correct the configuration, then plan again. Review the mapping CSV, inferred types,
+row counts and rejects. Then load the saved run
 (replace `loader` with your SQL login):
 
 ```powershell
@@ -104,43 +136,12 @@ A directory import is not one global transaction: each file or merged folder pub
 independently. Keep the source root, configuration, work directory and original run ID for
 recovery. Do not use a new intent or switch to replace mode to clear an error.
 
-## Recover a failed import
+## If an import stops
 
-1. Keep the original run ID, configuration, source selection and entire work directory.
-   Do not delete captures, journals, staging tables or receipts, start a new intent, or
-   switch to replace mode to clear an error.
-2. In a new PowerShell window, return to the repository directory and set the variables
-   below. Inspect status and errors; `status` can return the saved failure code while
-   successfully displaying its report.
-
-```powershell
-$IngestPython = (Resolve-Path '.\.venv-run\Scripts\python.exe').Path
-$RunId = 'PASTE_ORIGINAL_RUN_ID'
-& $IngestPython -I -m db_ingest --config '.\ingest.toml' status --run-id $RunId
-& $IngestPython -I -m db_ingest --config '.\ingest.toml' show-errors --run-id $RunId
-```
-
-3. For SQL resource errors, an unresponsive server or timeouts, give the DBA the run ID,
-   error codes and time of failure. Ask them to check server logs, memory and storage
-   capacity and restore server health while preserving the databases. A timeout by itself
-   does not establish a memory problem. Do not change server memory settings blindly.
-4. Once the cause is fixed, use the original configuration and run ID:
-
-```powershell
-& $IngestPython -I -m db_ingest --config '.\ingest.toml' test-connection --username loader --password-prompt
-if ($LASTEXITCODE -ne 0) { throw 'Stop: the SQL connection still needs repair.' }
-& $IngestPython -I -m db_ingest --config '.\ingest.toml' resume --run-id $RunId --username loader --password-prompt
-if ($LASTEXITCODE -ne 0) { throw 'Stop: retain the work directory and inspect status/show-errors again.' }
-& $IngestPython -I -m db_ingest --config '.\ingest.toml' reconcile --run-id $RunId --username loader --password-prompt
-if ($LASTEXITCODE -ne 0) { throw 'Stop: reconciliation needs investigation.' }
-```
-
-Resume checks publication receipts before replaying work. Confirm `CLEAN_VERIFIED` and
-expected counts; rejected rows require review even when accepted rows were published.
-If recovery still fails, preserve the evidence and involve an experienced engineer.
-Changed exports, incomplete captures and parsing corrections need the specific
-[operator recovery steps](docs/operator-guide.md) or [share recovery guide](docs/smb-outage-recovery.md).
-Never edit retained source captures to make recovery pass.
+Keep the original configuration, run ID and entire work directory. Do not switch to
+append/replace, delete recovery files or create a new intent to clear an error.
+Follow [diagnose, repair and resume](docs/recovery.md) for copyable commands, SQL capacity
+checks and escalation steps. Source-share failures have a separate [recovery guide](docs/smb-outage-recovery.md).
 
 ## Documentation
 

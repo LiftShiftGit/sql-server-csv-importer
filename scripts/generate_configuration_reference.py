@@ -72,7 +72,10 @@ not quoted strings. Paths are strings; single quotes simplify Windows paths.
 Precedence: **CLI > named environment variables > last matching file rule > global TOML > defaults**.
 Lists replace earlier lists. CLI options follow the command; `--config` precedes it.
 Changing interpretation/mapping on an existing intent requires `reimport`, not blind replay.
-The short [starter](../ingest.example.toml) is enough for normal use; this page is the full reference.
+For a one-off import, start with a [directory preset](directory-import.md), which explicitly
+uses `create_only`. The general [example](../ingest.example.toml) and built-in load default
+use `append`. Defaults below are built-in values, not the directory preset overrides.
+Use this page to look up individual fields; do not copy it as a complete configuration.
 
 Documentation coverage is distinct from test coverage. See the
 [parameter-test and deployment status](testing.md) for verified scope
